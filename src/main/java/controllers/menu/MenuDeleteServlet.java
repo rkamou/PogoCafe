@@ -17,19 +17,11 @@ import java.io.PrintWriter;
 @WebServlet("/menu-delete")
 public class MenuDeleteServlet extends PogoServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = 0;
-        if (request.getParameter("id") != null) id = Integer.parseInt(request.getParameter("id"));
+        int id = getParamInt("id", request);
 
         MenuService service = new MenuService();
         Result result = service.menuDelete(id);
 
         writeJson(result, response);
-
-        // response.setContentType("application/json");
-        // response.setCharacterEncoding("UTF-8");
-        // PrintWriter out = response.getWriter();
-        // out.write(new Gson().toJson(result));
-
-
     }
 }

@@ -18,8 +18,8 @@ import java.io.PrintWriter;
 public class MenuEditServlet extends PogoServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         MenuModel model = new MenuModel();
-        if (request.getParameter("id") != null) model.setId(Integer.parseInt(request.getParameter("id")));
-        if (request.getParameter("name") != null) model.setName(request.getParameter("name"));
+        model.setId(getParamInt("id", request));
+        model.setName(getParamString("name", request));
 
         MenuService service = new MenuService();
         Result result = service.menuEdit(model);

@@ -1,5 +1,7 @@
 package controllers.home;
 
+import classes.PogoServlet;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,13 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/index.html")
-public class IndexServlet extends HttpServlet {
+public class IndexServlet extends PogoServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher view = request.getRequestDispatcher("/pages/home/index.jsp");
-        view.forward(request, response);
+        forward("/pages/home/index.jsp", request, response);
     }
 }

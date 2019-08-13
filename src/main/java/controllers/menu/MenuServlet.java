@@ -17,7 +17,6 @@ public class MenuServlet extends PogoServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher view = request.getRequestDispatcher("/pages/menu/index.jsp");
-        view.forward(request, response);
+        forward("/pages/menu/index.jsp", request, response);
     }
 }
