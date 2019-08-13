@@ -1,5 +1,7 @@
 package controllers.menu;
 
+import classes.PogoServlet;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/menu")
-public class MenuServlet extends HttpServlet {
+public class MenuServlet extends PogoServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
