@@ -1,4 +1,4 @@
-package models.menu;
+package models.menu.users;
 
 public class DeliveryModel extends UserModel {
     public DeliveryModel(Integer id, String firstName, String lastName, String userName, String password) {

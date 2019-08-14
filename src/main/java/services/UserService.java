@@ -1,9 +1,8 @@
 package services;
 
 import classes.Result;
-import models.menu.DeliveryModel;
-import models.menu.ManagerModel;
-import models.menu.UserModel;
+import models.menu.users.DeliveryModel;
+import models.menu.users.ManagerModel;
 
 import javax.swing.*;
 
