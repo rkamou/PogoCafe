@@ -5,6 +5,7 @@ import models.dao.DAO;
 import models.menu.CategoryModel;
 import models.menu.ItemModel;
 import models.orders.OrderModel;
+import models.users.UserModel;
 
 public class BaseService {
     private static DAO<CategoryModel> daoCategory;
@@ -24,6 +25,12 @@ public class BaseService {
     public static Dao<OrderModel, Integer> dbOrders() {
         if (daoOrders == null) daoOrders = new DAO<>(OrderModel.class);
         return daoOrders.getDao();
+    }
+
+    private static DAO<UserModel> daoUser;
+    public static Dao<UserModel, Integer> dbUsers() {
+        if (daoUser == null) daoUser = new DAO<>(UserModel.class);
+        return daoUser.getDao();
     }
 
 }

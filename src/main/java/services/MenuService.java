@@ -135,7 +135,6 @@ public class MenuService extends BaseService {
         } catch (Exception ex) {
             result.addError(ex);
         }
-
         return result;
     }
 
