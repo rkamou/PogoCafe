@@ -1,26 +1,29 @@
 $(function () {
-    $("#login").on("click", login);
+    $("#login").on("click", validateUser);
 })
 
-function login() {
-    $.post("/login",
-        {
-            userName: $("#userName").val(),
-            password: $("#password").val()
-        })
-        .done(function (data) {
-            console.log(data);
-            if (!data) {
-                alert("User data not found!")
-                return;
-            }
+function getUserInfo() {
+    $.post("/login", {
+        userName: $("#userName").val(),
+        password: $("#password").val()
+    }).done(validateUser);
 
-            if (data.success) {
-                window.href = "/home";
-            } else {
-                for (const error of data.errors){
-                    alert(error);
-                }
+    function validateUser(data) {
+        $("#errorMsg").text("");
+
+        console.log(data);
+        if (!data) {
+            $("#errorMsg").text("Error loading user data!");
+            return;
+        }
+
+        if (data.success) {
+            window.location.href = "/";
+        } else {
+
+            for (const error of data.errors) {
+                $("#errorMsg").append(error);
             }
-        });
+        }
+    }
 }

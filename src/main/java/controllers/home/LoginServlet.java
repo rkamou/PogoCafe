@@ -17,21 +17,17 @@ import java.io.PrintWriter;
 @WebServlet("/login")
 public class LoginServlet extends PogoServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String userName = request.getParameter("userName");
-//        String password = request.getParameter("password");
-//
-//        UserService service = new UserService();
-//        Result result = service.login(userName, password);
+        String userName = getParamString("userName", request);
+        String password = getParamString("password", request);
 
-        Result result = new Result();
-        result.addError("This error");
+        UserService service = new UserService();
+        Result result = service.login(userName, password);
 
         writeJson(result, response);
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher view = request.getRequestDispatcher("/pages/home/login.jsp");
-        view.forward(request, response);
+        forward("/pages/home/login.jsp", request, response);
     }
 }
