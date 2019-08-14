@@ -5,7 +5,7 @@ $(function () {
 function getUserInfo() {
     let userName = $("#userName").val();
     let password = $("#password").val();
-
+    console.log("here");
     $.post("/login", {
         userName: userName,
         password: password

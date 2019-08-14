@@ -9,7 +9,8 @@
     <jsp:include page="/pages/shared/layoutTop.jsp" />
 
     <section class="height-90vh py-5 flex-center bg-cover jarallax" data-dark-overlay="4" style="background:url(/img/mainBg.jpg) no-repeat">
-        <div class="container">
+        <div class="containe
+        r">
             <div class="row">
                 <div class="col-lg-9 mx-auto text-center text-white">
                     <h4 class="display-5 font-weight-bold text-primary wow slideInUp">
