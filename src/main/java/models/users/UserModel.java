@@ -1,4 +1,4 @@
-package models.menu.users;
+package models.users;
 
 public class UserModel {
     private Integer id;

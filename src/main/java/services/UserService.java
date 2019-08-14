@@ -1,10 +1,8 @@
 package services;
 
 import classes.Result;
-import models.menu.users.DeliveryModel;
-import models.menu.users.ManagerModel;
-
-import javax.swing.*;
+import models.users.DeliveryModel;
+import models.users.ManagerModel;
 
 public class UserService extends BaseService {
 

@@ -1,4 +1,4 @@
-package models.menu.users;
+package models.users;
 
 public class ManagerModel extends UserModel {
     public ManagerModel(Integer id, String firstName, String lastName, String userName, String password) {
