@@ -14,3 +14,6 @@
 <script src="/js/vendors.bundle.js"></script>
 <script src="/js/scripts.js"></script>
 <script src="/js/bootstrap-notify.min.js"></script>
+
+<!--jstl-->
+<%--<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>--%>

@@ -12,7 +12,9 @@ function getUserInfo() {
         }
 
         if (data) {
-            $("#logoutMsg").text(data + " is logged out!");
+            //$("#logoutMsg").text("Logout successful!");
+            window.location.href = "/";
+            // $("#logoutMsg").text("Logout successful!");
         }
     }
 }
