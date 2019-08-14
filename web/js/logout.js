@@ -6,7 +6,6 @@ function getUserInfo() {
     $.post("/logout").done(validateUser);
 
     function validateUser(data) {
-        console.log(data);
         if (!data) {
             $("#logoutMsg").text("Logout failed!");
             return;
