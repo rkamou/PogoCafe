@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @WebServlet("/menu-delete")
 public class MenuDeleteServlet extends PogoServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = getParamInt("id", request);
 
         MenuService service = new MenuService();

@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @WebServlet("/menu-edit")
 public class MenuEditServlet extends PogoServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         MenuModel model = new MenuModel();
         model.setId(getParamInt("id", request));
         model.setName(getParamString("name", request));
