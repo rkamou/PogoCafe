@@ -3,7 +3,6 @@ package models.menu;
 import com.j256.ormlite.field.DatabaseField;
 
 import javax.persistence.*;
-import java.awt.*;
 
 @Entity
 @Table(name = "category", schema = "pogocafe", catalog = "")
