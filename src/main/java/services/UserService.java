@@ -1,12 +1,10 @@
 package services;
 
 import classes.Result;
-import models.menu.users.DeliveryModel;
-import models.menu.users.ManagerModel;
+import models.users.DeliveryModel;
+import models.users.ManagerModel;
 
-import javax.swing.*;
-
-public class UserService extends BaseService {
+public class UserService extends DeliveryService {
 
     private ManagerModel testManager = new ManagerModel(1, "Saju", "Ahmad", "saju", "123456");
     private DeliveryModel testOwner = new DeliveryModel(2, "Saju", "Ahmad", "saju1", "123456");

@@ -5,7 +5,7 @@ import models.menu.CategoryModel;
 import models.menu.ItemModel;
 import models.menu.MenuModel;
 
-public class MenuService extends BaseService {
+public class MenuService extends DeliveryService {
 
     // Adding or editing menu
     public Result menuEdit(MenuModel model) {

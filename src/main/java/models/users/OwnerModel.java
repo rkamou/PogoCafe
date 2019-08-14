@@ -1,4 +1,4 @@
-package models.menu.users;
+package models.users;
 
 public class OwnerModel extends UserModel {
     public OwnerModel(Integer id, String firstName, String lastName, String userName, String password) {
