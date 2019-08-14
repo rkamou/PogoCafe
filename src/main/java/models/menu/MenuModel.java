@@ -1,9 +1,18 @@
 package models.menu;
 
-public class MenuModel {
-    private int id;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "MenuModel", schema = "PogoCafe", catalog = "")
+public class MenuModel {
+    @Id
+    @Column(name = "id", nullable = false)
+    private int id;
+    @Basic
+    @Column(name = "name", nullable = true, length = 255)
     private String name;
+
+
 
     public int getId() {
         return id;
