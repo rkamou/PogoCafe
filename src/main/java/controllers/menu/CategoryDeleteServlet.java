@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/menu-delete")
-public class MenuDeleteServlet extends PogoServlet {
+@WebServlet("/category-delete")
+public class CategoryDeleteServlet extends PogoServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = getParamInt("id", request);
 

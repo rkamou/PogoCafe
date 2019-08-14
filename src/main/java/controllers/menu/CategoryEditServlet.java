@@ -2,7 +2,7 @@ package controllers.menu;
 
 import classes.PogoServlet;
 import classes.Result;
-import models.menu.MenuModel;
+import models.menu.CategoryModel;
 import services.MenuService;
 
 import javax.servlet.ServletException;
@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/menu-edit")
-public class MenuEditServlet extends PogoServlet {
+@WebServlet("/category-edit")
+public class CategoryEditServlet extends PogoServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        MenuModel model = new MenuModel();
+        CategoryModel model = new CategoryModel();
         model.setId(getParamInt("id", request));
         model.setName(getParamString("name", request));
 

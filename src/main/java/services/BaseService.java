@@ -4,17 +4,9 @@ import com.j256.ormlite.dao.Dao;
 import models.dao.DAO;
 import models.menu.CategoryModel;
 import models.menu.ItemModel;
-import models.menu.MenuModel;
 import models.orders.OrderModel;
 
 public class BaseService {
-
-    private static DAO<MenuModel> daoMenu;
-    public static Dao<MenuModel, Integer> dbMenu() {
-        if (daoMenu == null) daoMenu = new DAO<>(MenuModel.class);
-        return daoMenu.getDao();
-    }
-
     private static DAO<CategoryModel> daoCategory;
     public static Dao<CategoryModel, Integer> dbCategory() {
         if (daoCategory == null) daoCategory = new DAO<>(CategoryModel.class);

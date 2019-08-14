@@ -12,7 +12,7 @@
         <div class="containe
         r">
             <div class="row">
-                <div class="col-lg-9 mx-auto text-center text-white">
+                <div class="col-lg-12 mx-auto text-center text-white">
                     <h4 class="display-5 font-weight-bold text-primary wow slideInUp">
                         Welcome to
                     </h4>
@@ -90,17 +90,17 @@
                         <span class="text-primary">Pogo</span> cafe
                     </h2>
                     <p class="my-4">
-                        <p>
-                            Welcome to Pogo cafe. We offer healthy, fresh Mexican cuisine using only the finest
-                            ingredients and freshest products. At Pogo cafe we serve up fresh & healthy Mexican
-                            cuisine. Please choose from our selection of appetizers, soups, Tandoori specials, lamb,
-                            chicken, biriyani and much much more.
-                        </p>
-                        <p>
-                            We Are Looking forward to having you as our guest while we take you on a culinary journey
-                            through Mexico. Offering you not only the best service, our ultimate goal at Sapphire is to
-                            ensure that our guests leave with an unforgettable dining experience.
-                        </p>
+                    <p>
+                        Welcome to Pogo cafe. We offer healthy, fresh Mexican cuisine using only the finest
+                        ingredients and freshest products. At Pogo cafe we serve up fresh & healthy Mexican
+                        cuisine. Please choose from our selection of appetizers, soups, Tandoori specials, lamb,
+                        chicken, biriyani and much much more.
+                    </p>
+                    <p>
+                        We Are Looking forward to having you as our guest while we take you on a culinary journey
+                        through Mexico. Offering you not only the best service, our ultimate goal at Sapphire is to
+                        ensure that our guests leave with an unforgettable dining experience.
+                    </p>
                     </p>
                     <a href="#" class="btn btn-outline-primary">
                         Read More

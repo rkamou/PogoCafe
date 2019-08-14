@@ -20,15 +20,15 @@ public class CategoryModel {
     @Column(name = "description", nullable = true, length = 255)
     private String description;
 
-    @Column(name = "idMenu", nullable = false)
-    private int idMenu;
+    @Column(name = "menuName", nullable = false)
+    private String MenuName;
 
-    public int getIdMenu() {
-        return idMenu;
+    public String getMenuName() {
+        return MenuName;
     }
 
-    public void setIdMenu(int idMenu) {
-        this.idMenu = idMenu;
+    public void setMenuName(String menuName) {
+        MenuName = menuName;
     }
 
     public String getDescription() {

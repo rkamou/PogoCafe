@@ -3,7 +3,6 @@ package menu;
 import classes.Result;
 import models.menu.CategoryModel;
 import models.menu.ItemModel;
-import models.menu.MenuModel;
 import org.junit.Test;
 import services.MenuService;
 
@@ -13,24 +12,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class TestMenu {
-
-    @Test
-    public void TestMenu(){
-        MenuModel menu = new MenuModel();
-        menu.setId(5);
-        menu.setName("test menu 1");
-
-        MenuService service = new MenuService();
-        Result result = service.menuDelete(5);
-
-        System.out.println(result.isSuccess());
-        System.out.println(result.getId());
-        if (!result.isSuccess()) {
-            for (String error : result.getErrors()) {
-                System.out.println(error);
-            }
-        }
-    }
 
     @Test
     public void TestCategory(){
@@ -74,23 +55,6 @@ public class TestMenu {
         }
     }
 
-    @Test
-    public void TestSelectMenu(){
-        MenuService service = new MenuService();
-        MenuModel model = service.getMenu(1);
-
-        assertNotEquals(model, null);
-        if (model != null) {
-            System.out.println(model.getId() + " " + model.getName());
-        }
-
-        List<MenuModel> models = service.getMenuList();
-        if (models != null){
-            for (MenuModel m: models) {
-                System.out.println(m.getId() + " " + m.getName());
-            }
-        }
-    }
 
     @Test
     public void TestSelectCategory () {

@@ -3,7 +3,6 @@ package models.dao;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
-import models.menu.MenuModel;
 
 import java.io.FileReader;
 import java.lang.reflect.ParameterizedType;

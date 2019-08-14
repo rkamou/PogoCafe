@@ -32,7 +32,7 @@ CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
   `description` varchar(225) DEFAULT NULL,
-  `idMenu` int(11) DEFAULT NULL
+  `menuName` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -62,27 +62,6 @@ CREATE TABLE `lineitem` (
   `idItem` int(11) DEFAULT NULL,
   `idOrder` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `menu`
---
-
-CREATE TABLE `menu` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `menu`
---
-
-INSERT INTO `menu` (`id`, `name`) VALUES
-(1, 'toto'),
-(2, 'Pata'),
-(3, 'Otot'),
-(4, 'Vrai');
 
 -- --------------------------------------------------------
 
@@ -137,44 +116,31 @@ CREATE TABLE `user` (
 -- Индексы таблицы `category`
 --
 ALTER TABLE `category`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `menu` (`idMenu`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `item`
 --
 ALTER TABLE `item`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `category` (`idCategory`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `lineitem`
 --
 ALTER TABLE `lineitem`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `item` (`idItem`),
-  ADD KEY `order` (`idOrder`);
-
---
--- Индексы таблицы `menu`
---
-ALTER TABLE `menu`
   ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_order_userId` (`userOrderId`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `payment`
 --
 ALTER TABLE `payment`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user` (`idUser`),
-  ADD KEY `idorder` (`idOrder`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `user`
@@ -205,12 +171,6 @@ ALTER TABLE `lineitem`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `menu`
---
-ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
@@ -231,39 +191,6 @@ ALTER TABLE `user`
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
-
---
--- Ограничения внешнего ключа таблицы `category`
---
-ALTER TABLE `category`
-  ADD CONSTRAINT `menu` FOREIGN KEY (`idMenu`) REFERENCES `menu` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
-
---
--- Ограничения внешнего ключа таблицы `item`
---
-ALTER TABLE `item`
-  ADD CONSTRAINT `category` FOREIGN KEY (`idCategory`) REFERENCES `category` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
-
---
--- Ограничения внешнего ключа таблицы `lineitem`
---
-ALTER TABLE `lineitem`
-  ADD CONSTRAINT `item` FOREIGN KEY (`idItem`) REFERENCES `item` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `order` FOREIGN KEY (`idOrder`) REFERENCES `orders` (`id`);
-
---
--- Ограничения внешнего ключа таблицы `orders`
---
-ALTER TABLE `orders`
-  ADD CONSTRAINT `fk_order_userId` FOREIGN KEY (`userOrderId`) REFERENCES `user` (`id`);
-
---
--- Ограничения внешнего ключа таблицы `payment`
---
-ALTER TABLE `payment`
-  ADD CONSTRAINT `idorder` FOREIGN KEY (`idOrder`) REFERENCES `orders` (`id`),
-  ADD CONSTRAINT `user` FOREIGN KEY (`idUser`) REFERENCES `user` (`id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

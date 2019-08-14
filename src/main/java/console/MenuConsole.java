@@ -3,7 +3,6 @@ package console;
 import classes.Result;
 import models.dao.DAO;
 import models.menu.CategoryModel;
-import models.menu.MenuModel;
 import services.MenuService;
 
 public class MenuConsole {
