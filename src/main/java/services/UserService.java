@@ -8,7 +8,7 @@ import models.users.ManagerModel;
 public class UserService extends BaseService {
 
     private ManagerModel testManager = new ManagerModel(1, "Saju", "Ahmad", "saju", "123456");
-    private DeliveryModel testOwner = new DeliveryModel(2, "Saju", "Ahmad", "saju1", "123456");
+    private DeliveryModel testOwner  = new DeliveryModel(2, "Saju", "Ahmad", "saju1", "123456");
 
     public Result login(String userName, String password) {
         Result result = new Result();

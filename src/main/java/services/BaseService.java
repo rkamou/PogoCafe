@@ -5,6 +5,7 @@ import models.dao.DAO;
 import models.menu.CategoryModel;
 import models.menu.ItemModel;
 import models.menu.MenuModel;
+import models.orders.OrderModel;
 
 public class BaseService {
 
@@ -25,4 +26,12 @@ public class BaseService {
         if (daoItem == null) daoItem = new DAO<>(ItemModel.class);
         return daoItem.getDao();
     }
+
+
+    private static DAO<OrderModel> daoOrders;
+    public static Dao<OrderModel, Integer> dbOrders() {
+        if (daoOrders == null) daoOrders = new DAO<>(OrderModel.class);
+        return daoOrders.getDao();
+    }
+
 }
