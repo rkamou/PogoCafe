@@ -19,8 +19,8 @@ public class MenuEditServlet extends PogoServlet {
         model.setName(getParamString("name", request));
 
         MenuService service = new MenuService();
-        Result result = service.menuEdit(model);
+        // Result result = service.menuEdit(model);
 
-        writeJson(result, response);
+        // writeJson(result, response);
     }
 }

@@ -16,8 +16,8 @@ public class MenuDeleteServlet extends PogoServlet {
         int id = getParamInt("id", request);
 
         MenuService service = new MenuService();
-        Result result = service.menuDelete(id);
+        // Result result = service.menuDelete(id);
 
-        writeJson(result, response);
+        // writeJson(result, response);
     }
 }

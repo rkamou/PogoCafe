@@ -1,18 +1,51 @@
 package models.menu;
 
+import com.j256.ormlite.field.DatabaseField;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "item", schema = "pogocafe", catalog = "")
 public class ItemModel {
+    @Id
+    @Column(name = "id", nullable = false)
+    @DatabaseField(generatedId = true)
     private int id;
+
+    @Basic
+    @Column(name = "name", nullable = true, length = 255)
     private String name;
-    private String ingridients;
+
+    @Basic
+    @Column(name = "ingredients", nullable = true, length = 255)
+    private String ingredients;
+
+    @Basic
+    @Column(name = "price", nullable = false)
     private double price;
+
+    @Basic
+    @Column(name = "picture", nullable = true, length = 255)
     private String picture;
 
-    public String getIngridients() {
-        return ingridients;
+    @Basic
+    @Column(name = "idCategory", nullable = false)
+    private int idCategory;
+
+    public String getIngredients() {
+        return ingredients;
     }
 
-    public void setIngridients(String ingridients) {
-        this.ingridients = ingridients;
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public int getIdCategory() {
+        return idCategory;
+    }
+
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
     }
 
     public double getPrice() {
