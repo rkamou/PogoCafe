@@ -1,12 +1,37 @@
 package services;
 
 import classes.Result;
-import models.dao.DAO;
 import models.menu.CategoryModel;
 import models.menu.ItemModel;
 import models.menu.MenuModel;
+import java.util.List;
 
 public class MenuService extends BaseService {
+
+
+    //region Menu
+
+    // get menuModel by id
+    public MenuModel getMenu(int id){
+        try {
+            MenuModel model = dbMenu().queryForId(id);
+            return model;
+        } catch (Exception ex){
+            System.out.println("Error: MenuService.getMenu() " + ex);
+            return null;
+        }
+    }
+
+    // get menu list
+    public List<MenuModel> getMenuList(){
+        try {
+            List<MenuModel> models = dbMenu().queryForAll();
+            return models;
+        } catch (Exception ex) {
+            System.out.println("Error: MenuService.getMenuList() " + ex);
+            return null;
+        }
+    }
 
     // Adding or editing menu
     public Result menuEdit(MenuModel model) {
@@ -20,8 +45,7 @@ public class MenuService extends BaseService {
                 result.setId(model.getId());
             } else {
                 // editing
-                if (!dbMenu().idExists(model.getId()))
-                    return new Result("Cannot find menu with id: " + model.getId());
+                if (!dbMenu().idExists(model.getId())) return new Result("Cannot find menu with id: " + model.getId());
                 dbMenu().update(model);
             }
         } catch (Exception ex) {
@@ -44,6 +68,36 @@ public class MenuService extends BaseService {
         }
 
         return result;
+    }
+
+    //endregion
+
+    //region Menu Category
+
+    // get CategoryModel by id
+    public CategoryModel getCategory(int id) {
+        try {
+            CategoryModel model = dbCategory().queryForId(id);
+            return model;
+        } catch (Exception ex) {
+            System.out.println("Error: MenuService.getCategory() " + ex);
+            return null;
+        }
+    }
+
+    // get Category list
+    public List<CategoryModel> getCategoryList(int menuId) {
+        try {
+            List<CategoryModel> models = dbCategory().queryBuilder()
+                    .where()
+                    .eq("idMenu", menuId)
+                    .query();
+
+            return models;
+        } catch (Exception ex) {
+            System.out.println("Error: MenuService.getCategoryList() " + ex);
+            return null;
+        }
     }
 
     // Adding or editing category
@@ -83,6 +137,36 @@ public class MenuService extends BaseService {
         return result;
     }
 
+    //endregion
+
+    //region Menu Item
+
+    // get ItemModel by id
+    public ItemModel getItem(int id) {
+        try {
+            ItemModel model = dbItem().queryForId(id);
+            return model;
+        } catch (Exception ex) {
+            System.out.println("Error: MenuService.getItem() " + ex);
+            return null;
+        }
+    }
+
+    // get ItemModel list
+    public List<ItemModel> getItemList(int categoryId) {
+        try {
+            List<ItemModel> models = dbItem().queryBuilder()
+                    .where()
+                    .eq("idCategory", categoryId)
+                    .query();
+
+            return models;
+        } catch (Exception ex) {
+            System.out.println("Error: MenuService.getItemList() " + ex);
+            return null;
+        }
+    }
+
     // Adding or editing item
     public Result itemEdit(ItemModel model) {
         if (model == null) return new Result("Model is null");
@@ -119,4 +203,6 @@ public class MenuService extends BaseService {
 
         return result;
     }
+
+    //endregion
 }

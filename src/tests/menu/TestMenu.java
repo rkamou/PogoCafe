@@ -7,6 +7,11 @@ import models.menu.MenuModel;
 import org.junit.Test;
 import services.MenuService;
 
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
 public class TestMenu {
 
     @Test
@@ -50,7 +55,7 @@ public class TestMenu {
     @Test
     public void TestItem(){
         ItemModel item = new ItemModel();
-        item.setId(1);
+        item.setId(0);
         item.setName("Eggs2 boiled");
         item.setIngredients("Many2 ingredients");
         item.setPicture("eggs2.jpg");
@@ -58,13 +63,67 @@ public class TestMenu {
         item.setIdCategory(1);
 
         MenuService service = new MenuService();
-        Result result = service.itemDelete(1);
+        Result result = service.itemEdit(item);
 
         System.out.println(result.isSuccess());
         System.out.println(result.getId());
         if (!result.isSuccess()) {
             for (String error : result.getErrors()) {
                 System.out.println(error);
+            }
+        }
+    }
+
+    @Test
+    public void TestSelectMenu(){
+        MenuService service = new MenuService();
+        MenuModel model = service.getMenu(1);
+
+        assertNotEquals(model, null);
+        if (model != null) {
+            System.out.println(model.getId() + " " + model.getName());
+        }
+
+        List<MenuModel> models = service.getMenuList();
+        if (models != null){
+            for (MenuModel m: models) {
+                System.out.println(m.getId() + " " + m.getName());
+            }
+        }
+    }
+
+    @Test
+    public void TestSelectCategory () {
+        MenuService service = new MenuService();
+        CategoryModel model = service.getCategory(1);
+
+        assertNotEquals(model, null);
+        if (model != null) {
+            System.out.println(model.getId() + " " + model.getName());
+        }
+
+        List<CategoryModel> models = service.getCategoryList(1);
+        if (models != null) {
+            for (CategoryModel m : models) {
+                System.out.println(m.getId() + " " + m.getName());
+            }
+        }
+    }
+
+    @Test
+    public void TestSelectItem() {
+        MenuService service = new MenuService();
+        ItemModel model = service.getItem(2);
+
+        assertNotEquals(model, null);
+        if (model != null) {
+            System.out.println(model.getId() + " " + model.getName());
+        }
+
+        List<ItemModel> models = service.getItemList(1);
+        if (models != null) {
+            for (ItemModel m : models) {
+                System.out.println(m.getId() + " " + m.getName());
             }
         }
     }
