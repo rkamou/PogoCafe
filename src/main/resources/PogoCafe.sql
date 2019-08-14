@@ -122,8 +122,8 @@ CREATE TABLE `payment` (
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `login` int(11) NOT NULL,
-  `password` int(11) NOT NULL,
+  `login` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `role_user` enum('Admin','Customer','Deliver','') NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL

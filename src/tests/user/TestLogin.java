@@ -11,7 +11,7 @@ public class TestLogin {
     @Test
     public void loginTest(){
         UserService service = new UserService();
-        Result result = service.login("saju", "123456");
+        Result result = service.login("a", "123");
         assertTrue(result.isSuccess());
     }
 }

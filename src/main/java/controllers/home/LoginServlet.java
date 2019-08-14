@@ -19,9 +19,11 @@ public class LoginServlet extends PogoServlet {
         String userName = getParamString("userName", request);
         String password = getParamString("password", request);
         HttpSession session = request.getSession();
-//        System.out.println(userName + " " + password);
+
         UserService service = new UserService();
         Result result = service.login(userName, password);
+        System.out.println(userName + " " + password);
+        System.out.println(result);
         if (result.isSuccess()) {
             session.setAttribute("userType", result.getValue().getClass().getSimpleName());
             session.setAttribute("loginStatus", "loggedin");
