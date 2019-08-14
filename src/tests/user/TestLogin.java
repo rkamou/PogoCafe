@@ -4,7 +4,6 @@ package user;
 import classes.Result;
 import org.junit.Test;
 import services.UserService;
-
 import static org.junit.Assert.assertTrue;
 
 
