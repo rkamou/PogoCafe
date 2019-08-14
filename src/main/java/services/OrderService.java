@@ -61,19 +61,4 @@ public class OrderService extends BaseService {
         return list;
     }
 
-    //Get single order
-    //private
-
-
-
-
-        /*if(model.getUser_order_id() == 0) result.addError("Please enter user id");
-        if(model.getShipTo().isEmpty()) result.addError("Please enter address");
-        if(model.getStatus() ==null) result.addError("Please enter Status");
-        if(model.getOrdered() == null) result.addError("Please enter valide order date");
-        if(model.getShippped_date()== null) result.addError("Please enter valide ship date");
-        if(model.getOrder_package().isEmpty()) result.addError("Please enter valide order package");
-        if(!result.isSuccess()) return result;
-        orderModelList.add(model);*/
-
 }
