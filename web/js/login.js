@@ -1,29 +1,31 @@
 $(function () {
-    $("#login").on("click", validateUser);
+    $("#login").on("click", getUserInfo);
 })
 
 function getUserInfo() {
+    let userName = $("#userName").val();
+    let password = $("#password").val();
+
     $.post("/login", {
-        userName: $("#userName").val(),
-        password: $("#password").val()
+        userName: userName,
+        password: password
     }).done(validateUser);
 
     function validateUser(data) {
         $("#errorMsg").text("");
 
-        console.log(data);
         if (!data) {
             $("#errorMsg").text("Error loading user data!");
             return;
         }
 
-        if (data.success) {
+        if (data.value.userName === userName) {
             window.location.href = "/";
         } else {
-
             for (const error of data.errors) {
                 $("#errorMsg").append(error);
             }
+            // $("#errorMsg").text("Username or password is not valid");
         }
     }
 }

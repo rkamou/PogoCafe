@@ -7,6 +7,7 @@ import services.UserService;
 
 import static org.junit.Assert.assertTrue;
 
+
 public class TestLogin {
     @Test
     public void loginTest(){

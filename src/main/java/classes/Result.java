@@ -6,8 +6,17 @@ public class Result {
     private boolean success;
     private ArrayList<String> errors;
     private int id;
+    private Object value;
 
-    public Result(){
+    public Object getValue() {
+        return value;
+    }
+
+    public void setValue(Object value) {
+        this.value = value;
+    }
+
+    public Result() {
         success = true;
         errors = new ArrayList<>();
     }

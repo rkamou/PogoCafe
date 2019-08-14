@@ -9,5 +9,6 @@
 
     <a href="contacts">Contacts</a>
     <a href="/menu">Menu</a>
+    <a href="/logout">Logout</a>
   </body>
 </html>

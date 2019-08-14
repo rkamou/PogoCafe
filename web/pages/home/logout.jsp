@@ -9,8 +9,14 @@
 <html>
 <head>
     <title>User Logout</title>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script src="./js/logout.js"></script>
+    <link rel="stylesheet" href="./css/style.css"> </head>
 </head>
 <body>
-<h4>Logout successfull!</h4>
+<h4 id="logoutMsg"></h4>
 </body>
 </html>
