@@ -17,3 +17,11 @@
 #categories-list .edit:hover {
     color: #00b249;
 }
+
+.menu-img-container{
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}

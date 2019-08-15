@@ -84,7 +84,7 @@ public class TestMenu {
             System.out.println(model.getId() + " " + model.getName());
         }
 
-        List<ItemModel> models = service.getItemList(1);
+        List<ItemModel> models = service.getItemList();
         if (models != null) {
             for (ItemModel m : models) {
                 System.out.println(m.getId() + " " + m.getName());

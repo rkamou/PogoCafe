@@ -4,17 +4,15 @@ import classes.Np;
 import classes.Result;
 import models.menu.CategoryModel;
 import models.menu.ItemModel;
-import models.menu.MenuViewModel;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MenuService extends BaseService {
-
-    //region Menu Category
-
     private static List<CategoryModel> categoryModelList = new ArrayList<CategoryModel>();
+    private static List<ItemModel> itemModelList = new ArrayList<ItemModel>();
+
     static {
         CategoryModel c1 = new CategoryModel();
         c1.setId(1);
@@ -29,7 +27,27 @@ public class MenuService extends BaseService {
         c2.setDescription("Beef dishes description");
         c2.setMenuName(Np.Menu.breakfast);
         categoryModelList.add(c2);
+
+        ItemModel i1 = new ItemModel();
+        i1.setId(1);
+        i1.setName("Fried eggs");
+        i1.setIngredients("2 fresh eggs, salt, pepper");
+        i1.setPrice(10.5);
+        i1.setPicture("https://cdn-image.foodandwine.com/sites/default/files/1502722278/fried-eggs-with-jamon-and-caviar-XL-RECIPE0917.jpg");
+        i1.setIdCategory(1);
+        itemModelList.add(i1);
+
+        ItemModel i2 = new ItemModel();
+        i2.setId(2);
+        i2.setName("Toast with jam");
+        i2.setIngredients("2 fresh served toast, with 4 jams and honey");
+        i2.setPrice(7.8);
+        i2.setPicture("https://www.cleaneatingmag.com/.image/t_share/MTUzNjc2NjYyNTIzODMyMDY2/white-bean--roasted-red-pepper-toasts-with-avocado_77_web.jpg");
+        i2.setIdCategory(1);
+        itemModelList.add(i2);
     }
+
+    //region Menu Category
 
     // get CategoryModel by id
     public CategoryModel getCategory(int id) {
@@ -72,6 +90,7 @@ public class MenuService extends BaseService {
             if (model.getId() == 0) {
                 // creating
                 // dbCategory().create(model);
+                // result.setId(model.getId());
 
                 model.setId(categoryModelList.size() + 1);
                 categoryModelList.add(model);
@@ -120,8 +139,9 @@ public class MenuService extends BaseService {
     // get ItemModel by id
     public ItemModel getItem(int id) {
         try {
-            ItemModel model = dbItem().queryForId(id);
-            return model;
+            //ItemModel model = dbItem().queryForId(id);
+            //return model;
+            return itemModelList.stream().filter(x->x.getId() == id).findFirst().get();
         } catch (Exception ex) {
             System.out.println("Error: MenuService.getItem() " + ex);
             return null;
@@ -129,14 +149,16 @@ public class MenuService extends BaseService {
     }
 
     // get ItemModel list
-    public List<ItemModel> getItemList(int categoryId) {
+    public List<ItemModel> getItemList() {
         try {
-            List<ItemModel> models = dbItem().queryBuilder()
-                    .where()
-                    .eq("idCategory", categoryId)
-                    .query();
-
-            return models;
+            // List<ItemModel> models = dbItem().queryBuilder()
+            //         .where()
+            //         .eq("idCategory", categoryId)
+            //         .query();
+            //
+            // return models;
+            Stream<ItemModel> dbSet = itemModelList.stream();
+            return dbSet.collect(Collectors.toList());
         } catch (Exception ex) {
             System.out.println("Error: MenuService.getItemList() " + ex);
             return null;
@@ -151,12 +173,25 @@ public class MenuService extends BaseService {
         try {
             if (model.getId() == 0) {
                 // creating
-                dbItem().create(model);
+                // dbItem().create(model);
+                // result.setId(model.getId());
+
+                model.setId(itemModelList.size() + 1);
+                itemModelList.add(model);
+
                 result.setId(model.getId());
             } else {
                 // editing
-                if (!dbItem().idExists(model.getId())) return new Result("Cannot find item with id: " + model.getId());
-                dbItem().update(model);
+                // if (!dbItem().idExists(model.getId())) return new Result("Cannot find item with id: " + model.getId());
+                // dbItem().update(model);
+
+                if (!itemModelList.stream().anyMatch(x -> x.getId() == model.getId())) return new Result("Cannot find item with id: " + model.getId());
+                ItemModel entity = itemModelList.stream().filter(x -> x.getId() == model.getId()).findFirst().get();
+                entity.setName(model.getName());
+                entity.setIngredients(model.getIngredients());
+                entity.setPrice(model.getPrice());
+                entity.setIdCategory(model.getIdCategory());
+                entity.setPicture(model.getPicture());
             }
         } catch (Exception ex) {
             result.addError(ex);
@@ -171,8 +206,11 @@ public class MenuService extends BaseService {
 
         // deleting
         try {
-            if (!dbItem().idExists(id)) return new Result("Cannot find item with id: " + id);
-            dbItem().deleteById(id);
+            // if (!dbItem().idExists(id)) return new Result("Cannot find item with id: " + id);
+            // dbItem().deleteById(id);
+
+            if (!itemModelList.stream().anyMatch(x -> x.getId() == id)) return new Result("Cannot find item with id: " + id);
+            itemModelList.remove(itemModelList.stream().filter(x -> x.getId() == id).findFirst().get());
         } catch (Exception ex) {
             result.addError(ex);
         }

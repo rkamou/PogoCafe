@@ -1,5 +1,10 @@
 package controllers.menu;
 
+import classes.PogoServlet;
+import models.menu.CategoryModel;
+import models.menu.ItemModel;
+import services.MenuService;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,14 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/menu/item")
-public class ItemServlet extends HttpServlet {
+@WebServlet("/item-get")
+public class ItemGetServlet extends PogoServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = getParamInt("id", request);
 
-    }
+        MenuService service = new MenuService();
+        ItemModel result = service.getItem(id);
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher view = request.getRequestDispatcher("../pages/menu/item.jsp");
-        view.forward(request, response);
+        writeJson(result, response);
     }
 }
