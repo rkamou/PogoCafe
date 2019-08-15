@@ -12,7 +12,7 @@ import java.util.List;
 
 public class DataAccess {
    public static enum StorageType {
-        USERS, MENUS, ITEMS, CATEGORIES;
+        USERS, MENUS, ITEMS, CATEGORIES,COUNTERS;
     }
 
 
@@ -43,7 +43,12 @@ public class DataAccess {
         Object retVal = null;
         try {
             String OUTPUT_DIR =  this.getClass().getClassLoader().getResource("DataFiles").toURI().getPath();
-            Path path = Paths.get(OUTPUT_DIR, type.toString());
+
+            URI uri = ClassLoader.getSystemResource("DataFiles").toURI();
+            String mainPath = Paths.get(uri).toString();
+            Path path = Paths.get(mainPath ,type.toString());
+
+            //Path path = Paths.get(OUTPUT_DIR, type.toString());
             System.out.println("file path: " + path);
             in = new ObjectInputStream(Files.newInputStream(path));
             retVal = in.readObject();

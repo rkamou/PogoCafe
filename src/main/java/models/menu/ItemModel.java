@@ -15,6 +15,15 @@ public class ItemModel implements Serializable {
 
     private int idCategory;
 
+    public ItemModel(int id, String name, String ingredients, double price, String picture, int idCategory) {
+        this.id = id;
+        this.name = name;
+        this.ingredients = ingredients;
+        this.price = price;
+        this.picture = picture;
+        this.idCategory = idCategory;
+    }
+
     public String getIngredients() {
         return ingredients;
     }
