@@ -1,5 +1,5 @@
 $(function () {
-    $("#login").on("click", getUserInfo);
+    $("#add").on("click", getUserInfo);
 });
 
 function getUserInfo() {

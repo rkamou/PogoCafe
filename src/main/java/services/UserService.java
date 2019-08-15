@@ -1,52 +1,45 @@
 package services;
 
 import classes.Result;
+import models.dao.DataAccess;
 import models.users.UserModel;
+import models.users.UserType;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class UserService extends BaseService {
-    // CategoryEntity categoryEntity = new CategoryEntity();
-    //
-    // HDAO hDaod = new HDAO();
-    // Session session = hDaod.getHDao();
 
+//    private UserModel admin = new UserModel("1", "Saju", "Ahmad", "a", "123", UserType.ADMIN);
+//    List<UserModel> users;
+//
+//    public void userList(UserModel user) {
+//        users = new ArrayList<>();
+//        users.add(user);
+//    }
+//
+//    public boolean addUser(UserModel user) {
+//        for (UserModel u : users) {
+//            System.out.println(u.toString());
+//        }
+//        return true;
+//    }
 
-//    private ManagerModel testManager = new ManagerModel(1, "Saju", "Ahmad", "saju", "123456");
-//    private DeliveryModel testOwner = new DeliveryModel(2, "Saju", "Ahmad", "saju1", "123456");
+    DataAccess dao = new DataAccess();
+    List<UserModel> users = (List<UserModel>)dao.readFromStorage(DataAccess.StorageType.USERS);
+    //dao.saveToStorage(DataAccess.StorageType.USERS, users);
 
     public Result login(String userName, String password) {
-        return null;
-        // if (session == null) System.out.println("Session is null");
-        // Result result = new Result();
-        // System.out.println("result: " + result);
-        // try {
-        //
-        //     String hql = "FROM UserEntity E WHERE E.login = :user_login AND E.password= :user_pass";
-        //     List<UserEntity> users = session.createQuery(hql).setParameter("user_login",userName).
-        //             setParameter("user_pass",password).list();
-        //
-        //     System.out.println("list: " + users);
-        //     if (users != null) {
-        //         return new Result();
-        //     } else {
-        //         return new Result("User not found!");
-        //     }
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
-        // return new Result("User name or password is incorrect");
-
-//        Result result = new Result();
-//        if (testManager.getUserName().equals(userName) && testManager.getPassword().equals(password)) {
-//            result.setValue(testManager);
-//            return result;
-//        } else if (testOwner.getUserName().equals(userName) && testOwner.getPassword().equals(password)) {
-//            result.setValue(testOwner);
-//            return result;
-//        }
-//        return new Result("User name or password is incorrect");
+        Result result = new Result();
+        //userList(admin);
+        for (UserModel user : users) {
+            if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
+                result.setValue(user);
+                return result;
+            }
+        }
+        return new Result("User name or password is incorrect");
     }
 }

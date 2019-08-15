@@ -27,21 +27,29 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/contacts">Contacts</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
+                    <c:if test="${loginStatus != 'loggedin'}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+                    </c:if>
                     <c:if test="${loginStatus == 'loggedin'}">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logout">Logout</a>
+                        <li class="nav-item nav-item__has-dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Users</a>
+                            <div class="dropdown-menu">
+                                <ul class="list-unstyled">
+                                    <li><a class="nav-link__list" href="/adduser">Add User</a></li>
+                                    <li><a class="nav-link__list" href="/listUser">List User</a></li>
+                                </ul>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/users">Users</a>
-                        </li>
-                        <c:if test="${userType == 'ManagerModel'}">
+                        <c:if test="${userType == 'ADMIN'}">
                             <li class="nav-item">
                                 <a class="nav-link" href="/reports">Reports</a>
                             </li>
                         </c:if>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">Logout</a>
+                        </li>
                         <li class="nav-item">
                             <p id="" class="nav-link" href="#">Logged in as ${userType}</p>
                         </li>

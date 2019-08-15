@@ -12,7 +12,6 @@ public class TestLogin {
     public void loginTest(){
         UserService service = new UserService();
         Result result = service.login("a", "a");
-        System.out.println(result.getErrors().size());
         assertTrue(result.isSuccess());
     }
 }

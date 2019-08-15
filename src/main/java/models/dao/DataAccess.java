@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public class DataAccess {
-    static enum StorageType {
+   public static enum StorageType {
         USERS, MENUS, ITEMS, CATEGORIES;
     }
 

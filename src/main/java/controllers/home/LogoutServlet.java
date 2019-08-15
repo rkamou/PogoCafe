@@ -13,19 +13,11 @@ import java.io.IOException;
 @WebServlet("/logout")
 public class LogoutServlet extends PogoServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        // if we use JavaScript
-//        HttpSession session = request.getSession();
-//        if (session != null) {
-//            String userType = (String) session.getAttribute("userType");
-//            writeJson(userType, response);
-//        }
-//        session.invalidate();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.invalidate();
         forward("/", request, response);
-//        forward("/pages/home/logout.jsp", request, response);
     }
 }

@@ -16,22 +16,20 @@
                 </h4>
             </div>
             <div class="card-body">
-<%--                <form action="/login" method="post" class="px-lg-4">--%>
-                    <div class="input-group input-group--focus mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-white ti-email"></span>
-                        </div>
-                        <input type="text" id="userName" class="form-control border-left-0 pl-0" placeholder="Username">
+                <div class="input-group input-group--focus mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-white ti-email"></span>
                     </div>
-                    <div class="input-group input-group--focus mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-white ti-lock"></span>
-                        </div>
-                        <input type="password" id="password" class="form-control border-left-0 pl-0" placeholder="Password">
+                    <input type="text" id="userName" class="form-control border-left-0 pl-0" placeholder="Username">
+                </div>
+                <div class="input-group input-group--focus mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-white ti-lock"></span>
                     </div>
-                    <button type="submit" id="login" class="btn btn-block btn-primary">Log in</button>
-                    <p class="my-5 text-center" id="errorMsg">${loginMessage}</p>
-<%--                </form>--%>
+                    <input type="password" id="password" class="form-control border-left-0 pl-0" placeholder="Password">
+                </div>
+                <button id="login" class="btn btn-block btn-primary">Log in</button>
+                <p class="my-5 text-center" id="errorMsg">${loginMessage}</p>
             </div>
         </div>
     </div>
