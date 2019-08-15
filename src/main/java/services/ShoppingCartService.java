@@ -9,35 +9,65 @@ import java.util.List;
 
 public class ShoppingCartService extends BaseService {
 
-    private static List<ShoppingCartModel> shoppingCartList = new ArrayList<ShoppingCartModel>();
+    public static List<ShoppingCartModel> shoppingCartList = new ArrayList<ShoppingCartModel>();
 
+    public ShoppingCartModel addToShoppingCart(int id, ItemModel item){
+        ShoppingCartModel shoppingCartModel = null;
 
-    public Result shoppingCreateorEdit(){
-        Result result = new Result();
-//        //ShoppingCartServlet
-//        if (model == null) return  new Result("Model is null");
-//
-//
-//        try {
-//            if (model.getId() == 0) {
-//                // creating
-//                sesion.setAttribute("datacart",model);
-//
-//                result.setId(model.getId());
-//            } else {
-//                // editing
-//
-//                // if (!dbOrders().idExists(model.getId())) return new Result("Cannot find order with id: " + model.getId());
-//                // dbOrders().update(model);
-//
-//            }
-//        } catch (Exception ex){
-//            result.addError(ex);
-//        }
+        if (id > 0) {
+            for (int i = 0; i < shoppingCartList.size(); i++) {
+                if (shoppingCartList.get(i).getId() == id)
+                    shoppingCartModel = shoppingCartList.get(i);
+            }
+        }
 
-        return  result;
+        if (shoppingCartModel == null) {
+            shoppingCartModel = new ShoppingCartModel();
+            shoppingCartModel.setId(shoppingCartList.size() + 1);
+            shoppingCartList.add(shoppingCartModel);
+        }
+
+        shoppingCartModel.getItems().add(item);
+
+        return shoppingCartModel;
     }
 
+    public ShoppingCartModel getShoppingCart(int id){
+        ShoppingCartModel shoppingCartModel = null;
+        if (id > 0) {
+            for (int i = 0; i < shoppingCartList.size(); i++) {
+                if (shoppingCartList.get(i).getId() == id)
+                    shoppingCartModel = shoppingCartList.get(i);
+            }
+        }
+
+        if (shoppingCartModel == null) {
+            shoppingCartModel = new ShoppingCartModel();
+        }
+        return shoppingCartModel;
+    }
+
+    public Result deleteFromShoppingCart(int id, int itemId) {
+        ShoppingCartModel shoppingCartModel = null;
+
+        if (id > 0) {
+            for (int i = 0; i < shoppingCartList.size(); i++) {
+                if (shoppingCartList.get(i).getId() == id)
+                    shoppingCartModel = shoppingCartList.get(i);
+            }
+        }
+
+        if (shoppingCartModel != null) {
+            for (int i = 0; i < shoppingCartModel.getItems().size(); i++) {
+                if (shoppingCartModel.getItems().get(i).getId() == itemId) {
+                    shoppingCartModel.getItems().remove(i);
+                    return new Result();
+                }
+            }
+        }
+        return new Result("Shopping cart is empty");
+
+    }
 
     public boolean checkOut(){
 //        int orderId = getId();

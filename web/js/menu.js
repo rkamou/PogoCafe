@@ -164,16 +164,18 @@ function categorySelect(e) {
 }
 
 function addToCart(e) {
-    $.ajax("/item-get", {
+    $.ajax("/add-to-cart", {
           "type":"POST",
           "data":{
-              "id":this.getAttribute("item-id")
+              "itemId": this.getAttribute("item-id")
           }
 
     }).done(showResul);
-    console.log("John add me to cart! My menu id = " + this.getAttribute("item-id"));
 }
 
 function showResul(data) {
-    console.log(data);
+    if (ProceedResult(data)) {
+        NotificationSuccess("Item added to your cart");
+        reloadShoppingCart();
+    }
 }
