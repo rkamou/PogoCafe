@@ -1,15 +1,13 @@
 $(function () {
     reloadShoppingCart();
     $("#shopping-cart").on("click", ".delete-item-from-cart", deleteFromShoppingCart);
-
 });
 
 function reloadShoppingCart() {
-    console.log("reload shopping cart")
     $.post("/get-shopping-cart")
         .done(function (data) {
-            console.log(data);
             $("#shopping-cart").html("");
+            let itemsCount = 0;
 
             if (data) {
                 for (const item of data.items) {
@@ -27,9 +25,34 @@ function reloadShoppingCart() {
                     li.append(a);
 
                     $("#shopping-cart").append(li);
+                    itemsCount++;
                 }
             }
+
+            if (itemsCount === 0) {
+                shoppingCartEmpty();
+            } else {
+                let li = $("<li>").addClass("dropdown-cart__item");
+                let div = $("<div>").addClass("media");
+                let divBody = $("<div>").addClass("media-body pl-3");
+                divBody.append($("<a>").addClass("btn btn-primary").attr("href", "/checkout").text("Checkout"));
+                div.append(divBody);
+                li.append(div);
+                $("#shopping-cart").append(li);
+            }
         });
+}
+
+function shoppingCartEmpty() {
+    $("#shopping-cart").html("");
+
+    let li = $("<li>").addClass("dropdown-cart__item");
+    let div = $("<div>").addClass("media");
+    let divBody = $("<div>").addClass("media-body pl-3");
+    divBody.append($("<p>").addClass("h6").text("Your shopping cart is empty"));
+    div.append(divBody);
+    li.append(div);
+    $("#shopping-cart").append(li);
 }
 
 function deleteFromShoppingCart(e) {
