@@ -3,6 +3,7 @@ package models.dao;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URI;
+import java.net.URL;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class DataAccess {
    public static enum StorageType {
-        USERS, MENUS, ITEMS, CATEGORIES;
+        USERS, MENUS, ITEMS, CATEGORIES, COUNTERS
     }
 
 
@@ -20,11 +21,13 @@ public class DataAccess {
     public void saveToStorage(StorageType type, Object ob) {
         ObjectOutputStream out = null;
         try {
-            String OUTPUT_DIR =  this.getClass().getClassLoader().getResource("DataFiles").getPath();
+            URL OUTPUT_DIR  =  this.getClass().getClassLoader().getResource("DataFiles");
+            //OUTPUT_DIR = uri.toURI()
             System.out.println(OUTPUT_DIR);
             //URI uri = ClassLoader.getSystemResource("DataFiles").toURI();
-            String mainPath = Paths.get(OUTPUT_DIR).toString();
-            Path path = Paths.get(mainPath ,type.toString());
+            String mainPath = Paths.get(OUTPUT_DIR.toURI()).toString();
+            Path path = Paths.get(mainPath,type.toString());
+
             out = new ObjectOutputStream(Files.newOutputStream(path));
             out.writeObject(ob);
         } catch(Exception e) {
@@ -42,9 +45,13 @@ public class DataAccess {
         ObjectInputStream in = null;
         Object retVal = null;
         try {
-            String OUTPUT_DIR =  this.getClass().getClassLoader().getResource("DataFiles").toURI().getPath();
-            Path path = Paths.get(OUTPUT_DIR, type.toString());
-            System.out.println("file path: " + path);
+            URL OUTPUT_DIR  =  this.getClass().getClassLoader().getResource("DataFiles");
+            //OUTPUT_DIR = uri.toURI()
+            System.out.println(OUTPUT_DIR);
+            //URI uri = ClassLoader.getSystemResource("DataFiles").toURI();
+            String mainPath = Paths.get(OUTPUT_DIR.toURI()).toString();
+            Path path = Paths.get(mainPath,type.toString());
+
             in = new ObjectInputStream(Files.newInputStream(path));
             retVal = in.readObject();
         } catch(Exception e) {

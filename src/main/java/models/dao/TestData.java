@@ -1,5 +1,13 @@
 package models.dao;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import models.users.UserModel;
@@ -25,7 +33,21 @@ public class TestData {
 		System.out.println((us!=null)?us.size():"null");
 	}
 
+	public static void main(String[] args){
+		File file = new File("DataFiles/USERS");
+		ObjectOutputStream out = null;
+		try {
 
+			URL sample = TestData.class.getResource("/DataFiles/USERS");
+
+			Path path = Paths.get(sample.toURI());
+
+			System.out.println(path.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		//System.out.println(file.getPath());
+	}
 
 //	public void libraryMemberData() {
 //

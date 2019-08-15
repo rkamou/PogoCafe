@@ -11,6 +11,13 @@ public class CategoryModel implements Serializable {
 
     private String menuName;
 
+    public CategoryModel(int id, String name, String description, String menuName) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.menuName = menuName;
+    }
+
     public String getMenuName() { return menuName; }
 
     public void setMenuName(String menuName) {

@@ -3,8 +3,9 @@ package models;
 import java.io.Serializable;
 
 public class CounterIndexEntities implements Serializable {
-    Integer countMenu;
-    Integer countCategories;
-    Integer countItems;
-    Integer countUsers;
+    public Integer countMenu;
+    public Integer countCategories;
+    public Integer countItems;
+    public Integer countUsers;
+
 }
