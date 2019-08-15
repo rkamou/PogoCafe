@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class MenuService extends BaseService {
-    private static List<CategoryModel> categoryModelList = new ArrayList<CategoryModel>();
-    private static List<ItemModel> itemModelList = new ArrayList<ItemModel>();
+    public static List<CategoryModel> categoryModelList = new ArrayList<CategoryModel>();
+    public static List<ItemModel> itemModelList = new ArrayList<ItemModel>();
 
     static {
         CategoryModel c1 = new CategoryModel();

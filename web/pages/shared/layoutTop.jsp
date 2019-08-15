@@ -1,4 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<script src="/js/shopCart.js"></script>
+
 <nav class="ec-nav sticky-top bg-white">
     <div class="container">
         <div class="navbar p-0 navbar-expand-lg">
@@ -52,7 +55,7 @@
                     <li class="nav-item nav-item__has-dropdown">
                         <a class="nav-link dropdown-toggle no-caret" href="#" data-toggle="dropdown"><i
                                 class="ti-shopping-cart"></i></a>
-                        <ul class="dropdown-menu dropdown-cart" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu dropdown-cart" aria-labelledby="navbarDropdown" id="shopping-cart">
                             <li class="dropdown-cart__item">
                                 <div class="media">
                                     <img class="dropdown-cart__img" src="#" alt="">

@@ -20,7 +20,7 @@ public class ItemGetServlet extends PogoServlet {
 
         MenuService service = new MenuService();
         ItemModel result = service.getItem(id);
-
+        
         writeJson(result, response);
     }
 }
