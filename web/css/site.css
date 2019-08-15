@@ -8,3 +8,12 @@
 .navigator-toolbox {
     padding: 10px 0 10px 20px;
 }
+
+#categories-list .edit {
+    /*margin-left: 10px;*/
+    color: lightgray;
+}
+
+#categories-list .edit:hover {
+    color: #00b249;
+}

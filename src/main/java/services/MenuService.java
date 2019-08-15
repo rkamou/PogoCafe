@@ -1,19 +1,42 @@
 package services;
 
+import classes.Np;
 import classes.Result;
 import models.menu.CategoryModel;
 import models.menu.ItemModel;
+import models.menu.MenuViewModel;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MenuService extends BaseService {
 
     //region Menu Category
 
+    private static List<CategoryModel> categoryModelList = new ArrayList<CategoryModel>();
+    static {
+        CategoryModel c1 = new CategoryModel();
+        c1.setId(1);
+        c1.setName("Chicken dishes");
+        c1.setDescription("Chicken dishes description");
+        c1.setMenuName(Np.Menu.breakfast);
+        categoryModelList.add(c1);
+
+        CategoryModel c2 = new CategoryModel();
+        c2.setId(2);
+        c2.setName("Beef dishes");
+        c2.setDescription("Beef dishes description");
+        c2.setMenuName(Np.Menu.breakfast);
+        categoryModelList.add(c2);
+    }
+
     // get CategoryModel by id
     public CategoryModel getCategory(int id) {
         try {
-            CategoryModel model = dbCategory().queryForId(id);
-            return model;
+            // CategoryModel model = dbCategory().queryForId(id);
+            // return model;
+            return categoryModelList.stream().filter(x->x.getId() == id).findFirst().get();
         } catch (Exception ex) {
             System.out.println("Error: MenuService.getCategory() " + ex);
             return null;
@@ -22,13 +45,18 @@ public class MenuService extends BaseService {
 
     // get Category list
     public List<CategoryModel> getCategoryList(String menuName) {
-        try {
-            List<CategoryModel> models = dbCategory().queryBuilder()
-                    .where()
-                    .eq("menuName", menuName)
-                    .query();
+        if (!menuName.equals(Np.Menu.breakfast) && !menuName.equals(Np.Menu.dinner) && !menuName.equals(Np.Menu.lunch) && !menuName.equals(Np.Menu.kids))
+            menuName = Np.Menu.breakfast;
 
-            return models;
+        try {
+            // List<CategoryModel> models = dbCategory().queryBuilder()
+            //         .where()
+            //         .eq("menuName", menuName)
+            //         .query();
+            //
+            // return models;
+            String menuNameVar = menuName;
+            return categoryModelList.stream().filter(x -> x.getMenuName().equals(menuNameVar)).collect(Collectors.toList());
         } catch (Exception ex) {
             System.out.println("Error: MenuService.getCategoryList() " + ex);
             return null;
@@ -43,12 +71,22 @@ public class MenuService extends BaseService {
         try {
             if (model.getId() == 0) {
                 // creating
-                dbCategory().create(model);
+                // dbCategory().create(model);
+
+                model.setId(categoryModelList.size() + 1);
+                categoryModelList.add(model);
+
                 result.setId(model.getId());
             } else {
                 // editing
-                if (!dbCategory().idExists(model.getId())) return new Result("Cannot find category with id: " + model.getId());
-                dbCategory().update(model);
+                // if (!dbCategory().idExists(model.getId())) return new Result("Cannot find category with id: " + model.getId());
+                // dbCategory().update(model);
+
+                if (!categoryModelList.stream().anyMatch(x->x.getId() == model.getId())) return new Result("Cannot find category with id: " + model.getId());
+                CategoryModel entity = categoryModelList.stream().filter(x -> x.getId() == model.getId()).findFirst().get();
+                entity.setName(model.getName());
+                entity.setDescription(model.getDescription());
+                entity.setMenuName(model.getMenuName());
             }
         } catch (Exception ex){
             result.addError(ex);
@@ -63,8 +101,11 @@ public class MenuService extends BaseService {
 
         // deleting
         try {
-            if (!dbCategory().idExists(id)) return new Result("Cannot find category with id: " + id);
-            dbCategory().deleteById(id);
+            // if (!dbCategory().idExists(id)) return new Result("Cannot find category with id: " + id);
+            // dbCategory().deleteById(id);
+
+            if (!categoryModelList.stream().anyMatch(x -> x.getId() == id)) return new Result("Cannot find category with id: " + id);
+            categoryModelList.remove(categoryModelList.stream().filter(x -> x.getId() == id).findFirst().get());
         }
         catch (Exception ex){
             result.addError(ex);

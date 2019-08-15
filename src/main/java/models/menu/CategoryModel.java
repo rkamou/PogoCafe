@@ -21,14 +21,12 @@ public class CategoryModel {
     private String description;
 
     @Column(name = "menuName", nullable = false)
-    private String MenuName;
+    private String menuName;
 
-    public String getMenuName() {
-        return MenuName;
-    }
+    public String getMenuName() { return menuName; }
 
     public void setMenuName(String menuName) {
-        MenuName = menuName;
+        this.menuName = menuName;
     }
 
     public String getDescription() {

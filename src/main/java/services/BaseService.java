@@ -8,6 +8,10 @@ import models.orders.OrderModel;
 import models.users.UserModel;
 
 public class BaseService {
+    public static void init(){
+        daoCategory = new DAO<>(CategoryModel.class);
+    }
+
     private static DAO<CategoryModel> daoCategory;
     public static Dao<CategoryModel, Integer> dbCategory() {
         if (daoCategory == null) daoCategory = new DAO<>(CategoryModel.class);

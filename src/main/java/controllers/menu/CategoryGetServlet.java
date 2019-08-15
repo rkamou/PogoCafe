@@ -1,7 +1,7 @@
 package controllers.menu;
 
 import classes.PogoServlet;
-import classes.Result;
+import models.menu.CategoryModel;
 import services.MenuService;
 
 import javax.servlet.ServletException;
@@ -9,14 +9,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet("/category-delete")
-public class CategoryDeleteServlet extends PogoServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+@WebServlet("/category-get")
+public class CategoryGetServlet extends PogoServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = getParamInt("id", request);
 
         MenuService service = new MenuService();
-        Result result = service.categoryDelete(id);
+        CategoryModel result = service.getCategory(id);
 
         writeJson(result, response);
     }
