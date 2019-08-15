@@ -1,6 +1,7 @@
 package controllers.home;
 
 import classes.PogoServlet;
+import models.dao.TestData;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +16,8 @@ public class IndexServlet extends PogoServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        TestData t = new TestData();
+        t.main();
         forward("/pages/home/index.jsp", request, response);
     }
 }

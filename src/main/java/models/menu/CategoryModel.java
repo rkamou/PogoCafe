@@ -1,6 +1,8 @@
 package models.menu;
 
-public class CategoryModel {
+import java.io.Serializable;
+
+public class CategoryModel implements Serializable {
     private int id;
 
     private String name;
