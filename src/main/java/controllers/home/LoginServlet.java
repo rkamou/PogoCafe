@@ -2,6 +2,8 @@ package controllers.home;
 
 import classes.PogoServlet;
 import classes.Result;
+import models.dao.DAO;
+import models.users.UserModel;
 import services.UserService;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/login")
 public class LoginServlet extends PogoServlet {
@@ -21,23 +24,16 @@ public class LoginServlet extends PogoServlet {
         HttpSession session = request.getSession();
 
         UserService service = new UserService();
+        System.out.println("Connection with : "+userName + " " + password);
+        List<UserModel> users;
         Result result = service.login(userName, password);
-        System.out.println(userName + " " + password);
-        System.out.println(result);
+
         if (result.isSuccess()) {
             session.setAttribute("userType", result.getValue().getClass().getSimpleName());
             session.setAttribute("loginStatus", "loggedin");
-//            System.out.println(result.isSuccess());
-//            ServletContext servletContext = getServletContext();
-//            RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/index.html");
-//            requestDispatcher.forward(request,response);
-//            forward("index.html", request, response);
-//            response.sendRedirect("/");
+
         }
-//        } else {
-//            request.setAttribute("loginMessage", "Username or password not correct!");
-//            doGet(request, response);
-//        }
+
         writeJson(result, response);
     }
 

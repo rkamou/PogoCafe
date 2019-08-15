@@ -57,4 +57,6 @@ public class Result {
     public void setId(int id) {
         this.id = id;
     }
+
+
 }
