@@ -1,27 +1,11 @@
 package models.users;
 
-import com.j256.ormlite.field.DatabaseField;
-
-import javax.persistence.*;
-
-@Entity
-@Table(name = "user")
-
 public class UserModel {
-    @Id
-    @Column(name = "id", nullable = false)
-    @DatabaseField(generatedId = true)
     private Integer id;
-    @Basic
-    @Column(name = "first_name", nullable = true, length = 255)
     private String firstName;
-    @Column(name = "last_name", nullable = true, length = 255)
     private String lastName;
-    @Column(name = "login", nullable = false, length = 255)
     private String userName;
-    @Column(name = "password", nullable = false, length = 255)
     private String password;
-    @Column(name = "role_user", nullable = false, length = 255)
     private String role;
 
     public UserModel(){}

@@ -19,12 +19,12 @@ public class OrderService extends BaseService {
         try {
             if (model.getId() == 0) {
                 // creating
-                dbOrders().create(model);
+                // dbOrders().create(model);
                 result.setId(model.getId());
             } else {
                 // editing
-                if (!dbOrders().idExists(model.getId())) return new Result("Cannot find order with id: " + model.getId());
-                 dbOrders().update(model);
+                // if (!dbOrders().idExists(model.getId())) return new Result("Cannot find order with id: " + model.getId());
+                //  dbOrders().update(model);
 
             }
         } catch (Exception ex){
@@ -40,8 +40,8 @@ public class OrderService extends BaseService {
         Result result = new Result();
         // deleting
         try {
-            if (!dbOrders().idExists(id)) return new Result("Cannot find order with id: " + id);
-            dbOrders().deleteById(id);
+            // if (!dbOrders().idExists(id)) return new Result("Cannot find order with id: " + id);
+            // dbOrders().deleteById(id);
         }
         catch (Exception ex){
             result.addError(ex);
@@ -53,11 +53,11 @@ public class OrderService extends BaseService {
     public   List<OrderModel> getOrderList(){
         List<OrderModel> list = null;
 
-        try {
-            list =  dbOrders().queryForAll();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        // try {
+        //     // list =  dbOrders().queryForAll();
+        // } catch (SQLException e) {
+        //     e.printStackTrace();
+        // }
         return list;
     }
 

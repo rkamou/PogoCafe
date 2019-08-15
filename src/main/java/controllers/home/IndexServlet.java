@@ -15,12 +15,6 @@ public class IndexServlet extends PogoServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-
-
-
-
-        forward("/pages/home/defaultContaint.jsp", request, response);
+        forward("/pages/home/index.jsp", request, response);
     }
 }

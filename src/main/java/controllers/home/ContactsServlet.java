@@ -1,7 +1,6 @@
 package controllers.home;
 
 import classes.PogoServlet;
-import models.dao.DAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

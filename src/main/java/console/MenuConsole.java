@@ -1,7 +1,6 @@
 package console;
 
 import classes.Result;
-import models.dao.DAO;
 import models.menu.CategoryModel;
 import services.MenuService;
 

@@ -1,38 +1,21 @@
 package models.orders;
 import classes.Status;
-import com.j256.ormlite.field.DatabaseField;
-
-import javax.persistence.*;
 import java.util.Date;
-
-@Entity
-@Table(name = "orders", schema = "PogoCafe", catalog = "")
 
 public class OrderModel {
 
-  @Id
-  @Column(name = "id", nullable = false)
-  @DatabaseField(generatedId = true)
   private int id;
 
-  @Basic
-  @Column(name = "user_order_id", nullable = true, length = 255)
   private int user_order_id;
 
-  @Column(name = "status", nullable = true,  length = 10)
   private Status status;
 
-  @Column(name = "shipTo", nullable = true,  length = 10)
   private String  shipTo;
 
-
-  @Column(name = "ordered", nullable = true, length = 255)
   private Date ordered;
 
-  @Column(name = "shipped_date", nullable = true, length = 255)
   private Date shippped_date;
 
-  @Column(name = "order_package", nullable = true, length = 255)
   private String order_package;
 
 

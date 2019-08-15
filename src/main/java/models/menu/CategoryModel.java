@@ -1,26 +1,12 @@
 package models.menu;
 
-import com.j256.ormlite.field.DatabaseField;
-
-import javax.persistence.*;
-
-@Entity
-@Table(name = "category", schema = "pogocafe", catalog = "")
 public class CategoryModel {
-    @Id
-    @Column(name = "id", nullable = false)
-    @DatabaseField(generatedId = true)
     private int id;
 
-    @Basic
-    @Column(name = "name", nullable = true, length = 255)
     private String name;
 
-    @Basic
-    @Column(name = "description", nullable = true, length = 255)
     private String description;
 
-    @Column(name = "menuName", nullable = false)
     private String menuName;
 
     public String getMenuName() { return menuName; }

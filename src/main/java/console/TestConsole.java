@@ -2,13 +2,8 @@ package console;
 
 import classes.Result;
 import classes.Status;
-import models.dao.DAO;
-import models.menu.CategoryModel;
 import models.orders.OrderModel;
-import services.MenuService;
 import services.OrderService;
-
-import java.awt.geom.RectangularShape;
 import java.util.Calendar;
 import java.util.Date;
 import java.sql.Timestamp;

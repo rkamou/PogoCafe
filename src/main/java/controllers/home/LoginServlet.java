@@ -2,7 +2,6 @@ package controllers.home;
 
 import classes.PogoServlet;
 import classes.Result;
-import models.dao.DAO;
 import models.users.UserModel;
 import services.UserService;
 
