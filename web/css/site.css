@@ -10,7 +10,7 @@
 }
 
 #categories-list .edit {
-    float: right;
+    /*margin-left: 10px;*/
     color: lightgray;
 }
 

@@ -1,40 +1,46 @@
 $(function () {
+    if (canEdit) {
+        $("#categories-list-container")
+            .append($("<button>").attr("id", "category-edit").addClass("btn").addClass("btn-outline-primary").addClass("my-2").text("Edit"))
+            .append($("<button>").attr("id", "category-new").addClass("btn").addClass("btn-outline-primary").addClass("my-2").addClass("ml-3").text("New"));
+    }
+
     $("#category-new").on("click", newCategoryClick);
-    $("#categories-list").on("click", "a", filterCategoryClick);
-    $("#categories-list").on("click", "a.edit", editCategoryClick);
+    $("#category-edit").on("click", editCategoryClick);
+
+    $("#categories-list").on("click", "a.nav-link", categorySelect);
 
     reloadAllCategories();
     reloadAllItems();
-
-    if (canEdit){
-        $("#categories-list-container").append(
-            $("<button>").attr("id", "category-new").addClass("btn").addClass("btn-link").text("New category")
-        );
-    }
 });
+
+let lastSelectedCategory = 0;
 
 // reloading categories list
 function reloadAllCategories(){
-    let all = `<li class="mb-2"><a href="#" category="0">All categories</a></li>`;
+    let all = `<a class="nav-link ${lastSelectedCategory == 0 ? 'active' : ''}" href="#" data-filter="*" category="0">All</a>`;
     $("#categories-list").html(all);
 
     $.post("/category-list", { menuName: $("#menuName").val() })
         .done(function (data) {
             if (data){
-                // <li class="mb-2"><a href="#" category="7">Desserts</a></li>
                 for (const cat of data) {
-                    let li = $("<li>").addClass("mb-2");
-                    li.append($("<a>").attr("href", "#").attr("category", cat.id).attr("title", cat.description).text(cat.name));
-                    if (canEdit) {
-                        li.append($("<a>").attr("href", "#").addClass("edit").attr("category", cat.id).text("edit"));
+                    const a = $("<a>")
+                        .addClass("nav-link")
+                        .attr("href", "#")
+                        .attr("title", cat.description)
+                        .attr("data-filter", ".category" + cat.id)
+                        .attr("category", cat.id)
+                        .text(cat.name);
+                    if (lastSelectedCategory == cat.id){
+                        a.addClass("active");
                     }
-                    $("#categories-list").append(li);
+                    $("#categories-list").append(a);
                 }
             }
+            categorySelect();
         });
 }
-
-let menuItems = [];
 
 // reloading all menu items
 function reloadAllItems() {
@@ -43,19 +49,6 @@ function reloadAllItems() {
         name: "Item 1",
         picture: "picture1"
     });
-}
-
-// filtering menu items by category
-function filterMenuItems(categoryId) {
-    for(item of menuItems){
-        // console.log(item);
-    }
-}
-
-// filtering menu items after user choose category
-function filterCategoryClick(e) {
-    e.preventDefault();
-    filterMenuItems(this.getAttribute("category"));
 }
 
 // new category clicked
@@ -69,10 +62,11 @@ function newCategoryClick() {
 }
 
 // edit category clicked
-function editCategoryClick(e) {
-    e.preventDefault();
+function editCategoryClick() {
+    if (lastSelectedCategory == 0) return;
+
     $.post("/category-get", {
-        id: this.getAttribute("category")
+        id: lastSelectedCategory
     })
         .done(function (data) {
             console.log(data);
@@ -80,4 +74,16 @@ function editCategoryClick(e) {
                 openCategoryModal(data);
             }
         });
+}
+
+function categorySelect(e) {
+    if (this["getAttribute"] && this.getAttribute("category")) {
+        lastSelectedCategory = this.getAttribute("category");
+    }
+
+    if (lastSelectedCategory > 0) {
+        $("#category-edit").show();
+    } else{
+        $("#category-edit").hide();
+    }
 }
