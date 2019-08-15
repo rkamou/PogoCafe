@@ -1,10 +1,12 @@
 $(function () {
-    $("#add").on("click", getUserInfo);
+    $("#login").on("click", getUserInfo);
 });
 
 function getUserInfo() {
     let userName = $("#userName").val();
     let password = $("#password").val();
+
+    console.log("here")
 
     $.post("/login", {
         userName: userName,

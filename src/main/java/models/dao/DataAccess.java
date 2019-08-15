@@ -2,6 +2,7 @@ package models.dao;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.URI;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,7 +22,9 @@ public class DataAccess {
         try {
             String OUTPUT_DIR =  this.getClass().getClassLoader().getResource("DataFiles").getPath();
             System.out.println(OUTPUT_DIR);
-            Path path = FileSystems.getDefault().getPath(OUTPUT_DIR, type.toString());
+            //URI uri = ClassLoader.getSystemResource("DataFiles").toURI();
+            String mainPath = Paths.get(OUTPUT_DIR).toString();
+            Path path = Paths.get(mainPath ,type.toString());
             out = new ObjectOutputStream(Files.newOutputStream(path));
             out.writeObject(ob);
         } catch(Exception e) {

@@ -3,7 +3,7 @@
 <head>
     <title>Add New User</title>
     <jsp:include page="/pages/shared/layoutDependecies.jsp"/>
-<%--    <script src="/js/adduser.js"></script>--%>
+    <script src="/js/adduser.js"></script>
 <body>
 <jsp:include page="/pages/shared/layoutTop.jsp"/>
 

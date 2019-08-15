@@ -12,28 +12,29 @@ import java.util.List;
 
 public class UserService extends BaseService {
 
-//    private UserModel admin = new UserModel("1", "Saju", "Ahmad", "a", "123", UserType.ADMIN);
-//    List<UserModel> users;
-//
-//    public void userList(UserModel user) {
-//        users = new ArrayList<>();
-//        users.add(user);
-//    }
-//
-//    public boolean addUser(UserModel user) {
-//        for (UserModel u : users) {
-//            System.out.println(u.toString());
-//        }
-//        return true;
-//    }
+    private UserModel admin = new UserModel("1", "Saju", "Ahmad", "a", "123", UserType.ADMIN);
+    List<UserModel> users;
 
-    DataAccess dao = new DataAccess();
-    List<UserModel> users = (List<UserModel>)dao.readFromStorage(DataAccess.StorageType.USERS);
-    //dao.saveToStorage(DataAccess.StorageType.USERS, users);
+    public void userList(UserModel user) {
+        users = new ArrayList<>();
+        users.add(user);
+    }
+
+    public boolean addUser(UserModel user) {
+        userList(user);
+        for (UserModel u : users) {
+            System.out.println(u.toString());
+        }
+        return true;
+    }
+
+//    DataAccess dao = new DataAccess();
+//    List<UserModel> users = (List<UserModel>)dao.readFromStorage(DataAccess.StorageType.USERS);
+
 
     public Result login(String userName, String password) {
         Result result = new Result();
-        //userList(admin);
+        userList(admin);
         for (UserModel user : users) {
             if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
                 result.setValue(user);
