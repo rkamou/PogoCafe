@@ -1,12 +1,16 @@
 package classes;
 
 import com.google.gson.Gson;
+import models.users.UserModel;
+import models.users.UserType;
+import services.UserService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -77,5 +81,20 @@ public class PogoServlet extends HttpServlet {
     public void forward(String page, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher view = request.getRequestDispatcher(page);
         view.forward(request, response);
+    }
+
+    public boolean haveIAccess(UserType userType, HttpServletRequest request){
+        boolean loggedIn = false;
+        HttpSession session = request.getSession();
+        if (session.getAttribute("loginStatus") != null)
+            loggedIn = session.getAttribute("loginStatus").equals("loggedin");
+
+        if (loggedIn){
+            if (session.getAttribute("userType") != null){
+                return userType.toString() == session.getAttribute("userType").toString();
+            }
+        }
+
+        return false;
     }
 }

@@ -37,11 +37,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/list-user">Users</a>
                         </li>
-                        <c:if test="${userType == 'ADMIN'}">
-                            <li class="nav-item">
-                                <a class="nav-link" href="/reports">Reports</a>
-                            </li>
-                        </c:if>
+<%--                        <c:if test="${userType == 'ADMIN'}">--%>
+<%--                            <li class="nav-item">--%>
+<%--                                <a class="nav-link" href="/reports">Reports</a>--%>
+<%--                            </li>--%>
+<%--                        </c:if>--%>
                         <li class="nav-item">
                             <a class="nav-link" href="/logout">Logout</a>
                         </li>
