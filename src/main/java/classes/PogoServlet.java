@@ -75,7 +75,8 @@ public class PogoServlet extends HttpServlet {
     }
 
     public void forward(String page, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher view = request.getRequestDispatcher(page);
+        request.setAttribute("containt",page);
+        RequestDispatcher view = request.getRequestDispatcher("/pages/home/index.jsp");
         view.forward(request, response);
     }
 }

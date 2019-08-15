@@ -1,35 +1,43 @@
 package services;
 
 import classes.Result;
+import models.dao.HDAO;
+import models.entities.CategoryEntity;
+import models.entities.UserEntity;
 import models.users.UserModel;
+import org.hibernate.Session;
 
 import java.sql.SQLException;
 import java.util.List;
 
 
 public class UserService extends BaseService {
+    CategoryEntity categoryEntity = new CategoryEntity();
+
+    HDAO hDaod = new HDAO();
+    Session session = hDaod.getHDao();
+
 
 //    private ManagerModel testManager = new ManagerModel(1, "Saju", "Ahmad", "saju", "123456");
 //    private DeliveryModel testOwner = new DeliveryModel(2, "Saju", "Ahmad", "saju1", "123456");
 
     public Result login(String userName, String password) {
+        if (session == null) System.out.println("Session is null");
         Result result = new Result();
         System.out.println("result: " + result);
         try {
-            List<UserModel> users = dbUsers().queryBuilder().where().eq("login", userName).query();
+
+            String hql = "FROM UserEntity E WHERE E.login = :user_login AND E.password= :user_pass";
+            List<UserEntity> users = session.createQuery(hql).setParameter("user_login",userName).
+                    setParameter("user_pass",password).list();
+
             System.out.println("list: " + users);
             if (users != null) {
-                for (UserModel user : users) {
-                    System.out.println("=======User ======= = "+user);
-                    if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
-                        result.setValue(user);
-                        return result;
-                    }
-                }
+                return new Result();
             } else {
                 return new Result("User not found!");
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return new Result("User name or password is incorrect");
