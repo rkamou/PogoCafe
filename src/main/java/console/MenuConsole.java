@@ -11,7 +11,7 @@ public class MenuConsole {
         category.setId(0);
         category.setName("Number8880000");
         category.setDescription("dwfdsfsdfc");
-        category.setIdMenu(1);
+        category.setMenuName("kids");
 
         MenuService service = new MenuService();
         Result result = service.categoryEdit(category);

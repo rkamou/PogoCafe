@@ -31,50 +31,12 @@
 
     <section class="padding-y-100">
         <div class="container">
+
+            <!-- Menu types -->
             <div class="card flex-wrap flex-row padding-md-40 shadow-v2 z-index-10" data-offset-top-lg="-200">
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="/img/menu/breakfast.jpg" class="card-img-top" alt="">
-                        <h4 class="my-4">
-                            Breakfast menu
-                        </h4>
-                        <p>
-                            Breakfast description
-                        </p>
-                        <a href="/menu" class="btn btn-outline-primary mt-3 align-self-start">
-                            Read More
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="/img/menu/lunch.jpg" class="card-img-top" alt="">
-                        <h4 class="my-4">
-                            Lunch and dinner
-                        </h4>
-                        <p>
-                            Launch description
-                        </p>
-                        <a href="/menu" class="btn btn-outline-primary mt-3 align-self-start">
-                            Read More
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="/img/menu/kids.jpg" class="card-img-top" alt="">
-                        <h4 class="my-4">
-                            Children menu
-                        </h4>
-                        <p>
-                            Children menu description
-                        </p>
-                        <a href="/menu" class="btn btn-outline-primary mt-3 align-self-start">
-                            Read More
-                        </a>
-                    </div>
-                </div>
+                <jsp:include page="/pages/shared/_menuCards.jsp" />
             </div> <!-- END row-->
+
             <div class="row marginTop-lg-100">
                 <div class="col-lg-5 mr-auto mt-5">
                     <div class="owl-carousel" data-items="1" data-dots="true">

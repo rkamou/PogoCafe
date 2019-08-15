@@ -19,7 +19,7 @@ public class TestMenu {
         category.setId(0);
         category.setName("Test category");
         category.setDescription("description");
-        category.setIdMenu(1);
+        category.setMenuName("kids");
 
         MenuService service = new MenuService();
         Result result = service.categoryEdit(category);
@@ -66,7 +66,7 @@ public class TestMenu {
             System.out.println(model.getId() + " " + model.getName());
         }
 
-        List<CategoryModel> models = service.getCategoryList(1);
+        List<CategoryModel> models = service.getCategoryList("kids");
         if (models != null) {
             for (CategoryModel m : models) {
                 System.out.println(m.getId() + " " + m.getName());

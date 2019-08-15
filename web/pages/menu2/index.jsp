@@ -5,12 +5,16 @@
     <title>Contacts</title>
 
     <jsp:include page="/pages/shared/layoutDependecies.jsp" />
-    <% MenuViewModel model = (MenuViewModel) request.getAttribute("model"); %>
+    <script src="/js/menu.js"></script>
 
+    <% MenuViewModel model = (MenuViewModel) request.getAttribute("model"); %>
 </head>
 <body>
     <jsp:include page="/pages/shared/layoutTop.jsp" />
-
+    <input type="hidden" id="menuName" value="<%= request.getParameter("menuType")%>">
+    <script>
+        const canEdit = '<%= false %>' === 'true';
+    </script>
 
     <div class="padding-y-60 bg-cover" data-dark-overlay="6" style="background:url(/img/cafe/breadcrumb-bg.jpg) no-repeat">
         <div class="container">
@@ -29,15 +33,13 @@
         </div>
     </div>
 
-
-    <!-- Toolbox -->
     <section class="py-3 position-relative shadow-v2">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-12 my-2">
-                </div>
+            <!-- Menu types -->
+            <div class="card flex-wrap flex-row pt-4">
+                <jsp:include page="/pages/shared/_menuCards.jsp" />
             </div> <!-- END row-->
-        </div> <!-- END container-->
+        </div>
     </section>
 
     <section class="paddingTop-50 paddingBottom-100 bg-light">
@@ -46,17 +48,9 @@
 
                 <!-- Left aside -->
                 <aside class="col-lg-3 order-2 order-lg-1">
-                    <div class="card shadow-v2 marginTop-30">
+                    <div class="card shadow-v2 marginTop-30" id="categories-list-container">
                         <h4 class="card-header bg-primary text-white mb-0">Choose Category</h4>
-                        <ul class="card-body list-unstyled mb-0">
-                            <li class="mb-2"><a href="">All items</a></li>
-                            <li class="mb-2"><a href="">Soups</a></li>
-                            <li class="mb-2"><a href="">Fish dishes</a></li>
-                            <li class="mb-2"><a href="">Chicken</a></li>
-                            <li class="mb-2"><a href="">Beef</a></li>
-                            <li class="mb-2"><a href="">Sweet and spicy</a></li>
-                            <li class="mb-2"><a href="">Drinks</a></li>
-                            <li class="mb-2"><a href="">Desserts</a></li>
+                        <ul class="card-body list-unstyled mb-0" id="categories-list">
                         </ul>
                     </div>
                 </aside> <!-- END col-lg-3 -->
@@ -310,6 +304,7 @@
         </div> <!-- END container-->
     </section>
 
+    <jsp:include page="/pages/menu2/categoryModal.jsp" />
 
     <jsp:include page="/pages/shared/layoutBottom.jsp" />
 </body>

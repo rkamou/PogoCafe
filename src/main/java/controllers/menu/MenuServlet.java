@@ -15,6 +15,6 @@ public class MenuServlet extends PogoServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        forward("/pages/menu/index.jsp", request, response);
+        forward("/pages/menu2/index.jsp", request, response);
     }
 }
