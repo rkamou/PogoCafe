@@ -5,6 +5,7 @@ import java.io.ObjectOutputStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 
@@ -39,7 +40,7 @@ public class DataAccess {
         Object retVal = null;
         try {
             String OUTPUT_DIR =  this.getClass().getClassLoader().getResource("DataFiles").toURI().getPath();
-            Path path = FileSystems.getDefault().getPath(OUTPUT_DIR, type.toString());
+            Path path = Paths.get(OUTPUT_DIR, type.toString());
             System.out.println("file path: " + path);
             in = new ObjectInputStream(Files.newInputStream(path));
             retVal = in.readObject();
