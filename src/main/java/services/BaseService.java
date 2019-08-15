@@ -21,12 +21,18 @@ public class BaseService {
 
     public int getNextCategoryId() {
         CounterIndexEntities c = (CounterIndexEntities) dao.readFromStorage(DataAccess.StorageType.COUNTERS);
-        return c.countCategories + 1;
+
+        return (c != null) ? c.countCategories + 1 : 1;
     }
 
     public int getNextItemId() {
         CounterIndexEntities c = (CounterIndexEntities) dao.readFromStorage(DataAccess.StorageType.COUNTERS);
-        return c.countItems + 1;
+        return (c != null) ? c.countItems + 1 : 1;
+    }
+
+    public int getNextUserId() {
+        CounterIndexEntities c = (CounterIndexEntities) dao.readFromStorage(DataAccess.StorageType.COUNTERS);
+        return (c != null) ? c.countUsers + 1 : 1;
     }
 
     public static void loadOriginalUser() {
