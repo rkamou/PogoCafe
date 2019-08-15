@@ -32,15 +32,10 @@
                             <a class="nav-link" href="/login">Login</a>
                         </li>
                     </c:if>
-                    <c:if test="${loginStatus == 'loggedin'}">
-                        <li class="nav-item nav-item__has-dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Users</a>
-                            <div class="dropdown-menu">
-                                <ul class="list-unstyled">
-                                    <li><a class="nav-link__list" href="/adduser">Add User</a></li>
-                                    <li><a class="nav-link__list" href="/listUser">List User</a></li>
-                                </ul>
-                            </div>
+
+                     <c:if test="${loginStatus == 'loggedin'}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/list-user">Users</a>
                         </li>
                         <c:if test="${userType == 'ADMIN'}">
                             <li class="nav-item">
@@ -61,53 +56,8 @@
             <div class="nav-toolbar">
                 <ul class="navbar-nav ec-nav__navbar">
                     <li class="nav-item nav-item__has-dropdown">
-                        <a class="nav-link dropdown-toggle no-caret" href="#" data-toggle="dropdown"><i
-                                class="ti-shopping-cart"></i></a>
-                        <ul class="dropdown-menu dropdown-cart" aria-labelledby="navbarDropdown" id="shopping-cart">
-                            <li class="dropdown-cart__item">
-                                <div class="media">
-                                    <img class="dropdown-cart__img" src="#" alt="">
-                                    <div class="media-body pl-3">
-                                        <a href="#" class="h6">Tofu meal</a>
-                                        <span class="text-primary">$199.00</span>
-                                    </div>
-                                </div>
-                                <a href="#" class="dropdown-cart__item-remove">
-                                    <i class="ti-close"></i>
-                                </a>
-                            </li>
-                            <li class="dropdown-cart__item">
-                                <div class="media">
-                                    <img class="dropdown-cart__img" src="#" alt="">
-                                    <div class="media-body pl-3">
-                                        <a href="#" class="h6">Chicken menu</a>
-                                        <span class="text-primary">$45.00</span>
-                                    </div>
-                                </div>
-                                <a href="#" class="dropdown-cart__item-remove">
-                                    <i class="ti-close"></i>
-                                </a>
-                            </li>
-                            <li class="dropdown-cart__item">
-                                <div class="media">
-                                    <img class="dropdown-cart__img" src="#" alt="">
-                                    <div class="media-body pl-3">
-                                        <a href="#" class="h6">Pizza cheese</a>
-                                        <span class="text-primary">$79.00</span>
-                                    </div>
-                                </div>
-                                <a href="#" class="dropdown-cart__item-remove">
-                                    <i class="ti-close"></i>
-                                </a>
-                            </li>
-                            <li class="px-2 py-4 text-center">
-                                Subtotal: <span class="text-primary font-weight-semiBold"> $275.00</span>
-                            </li>
-                            <li class="px-2 pb-4 text-center">
-                                <button class="btn btn-outline-primary mx-1">View Cart</button>
-                                <button class="btn btn-primary mx-1">Checkout</button>
-                            </li>
-                        </ul>
+                        <a class="nav-link dropdown-toggle no-caret" href="#" data-toggle="dropdown"><i class="ti-shopping-cart"></i></a>
+                        <ul class="dropdown-menu dropdown-cart" aria-labelledby="navbarDropdown" id="shopping-cart"></ul>
                     </li>
                 </ul>
             </div>

@@ -3,14 +3,18 @@ package models.users;
 import java.io.Serializable;
 
 public class UserModel implements Serializable {
-    private String id;
+    private int id;
     private String firstName;
     private String lastName;
     private String userName;
     private String password;
     private UserType role;
 
-    public UserModel(String id, String firstName, String lastName, String userName, String password, UserType role) {
+    public UserModel(){
+        id = 0;
+    }
+
+    public UserModel(int id, String firstName, String lastName, String userName, String password, UserType role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -31,8 +35,32 @@ public class UserModel implements Serializable {
         return userName;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRole(UserType role) {
+        this.role = role;
     }
 
     public String getPassword() {

@@ -54,6 +54,7 @@
     });
 
     function openMenuItemModal(model) {
+        $("#menuItem-idCategory").html("");
         for (let cat of categoriesList) {
             $("#menuItem-idCategory").append($("<option>").attr("value", cat.id).text(cat.name));
         }

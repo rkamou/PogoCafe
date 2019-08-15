@@ -10,10 +10,10 @@ public class TestData {
 	static List<UserModel> users = new ArrayList<UserModel>();
 	@SuppressWarnings("serial")
 	public static void loadOriginalUser(){
-		users.add(new UserModel("1", "Toto",  "Tata", "a", "a", UserType.ADMIN));
-		users.add(new UserModel("2", "Riki",  "Tata", "b", "b", UserType.ADMIN));
-		users.add(new UserModel("3", "Titi",  "Tata", "c", "c", UserType.CUSTOMER));
-		users.add(new UserModel("4", "Tata",  "Tata", "c", "c", UserType.DELIVER));
+		users.add(new UserModel(1, "Toto",  "Tata", "a", "a", UserType.ADMIN));
+		users.add(new UserModel(2, "Riki",  "Tata", "b", "b", UserType.ADMIN));
+		users.add(new UserModel(3, "Titi",  "Tata", "c", "c", UserType.CUSTOMER));
+		users.add(new UserModel(4, "Tata",  "Tata", "c", "c", UserType.DELIVER));
 
 	}
 
