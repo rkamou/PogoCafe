@@ -8,7 +8,6 @@
 <jsp:include page="/pages/shared/layoutTop.jsp"/>
 <section class="padding-y-100">
     <div class="container">
-
         <div class="row">
             <div class="col-12 text-center">
                 <h2 class="mb-4">
@@ -114,9 +113,7 @@
         </div>
     </div>
 </section>
-<div class="row">
-    <hr/>
-</div>
+
 <jsp:include page="/pages/shared/layoutBottom.jsp"/>
 </body>
 </html>

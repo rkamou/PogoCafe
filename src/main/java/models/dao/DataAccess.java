@@ -13,7 +13,7 @@ import java.util.List;
 
 
 public class DataAccess {
-    static String mainPath = "/Users/pogoromuald/DataFiles";
+    static String mainPath = "c:\\DataFiles";
   //  static String mainPath = "c:\\DataFiles";//John Mac Computer
 
 

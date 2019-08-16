@@ -11,11 +11,9 @@ import java.io.IOException;
 @WebServlet("/contacts")
 public class ContactsServlet extends PogoServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         forward("/pages/home/contacts.jsp", request, response);
     }
 }
