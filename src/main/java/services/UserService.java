@@ -6,9 +6,6 @@ import java.util.List;
 
 
 public class UserService extends BaseService {
-    static {
-        // usersList.add(new UserModel(1, "Saju", "Ahmad", "a", "123", UserType.ADMIN));
-    }
 
     public Result editUser(UserModel model) {
         Result result = new Result();
@@ -53,10 +50,6 @@ public class UserService extends BaseService {
     public List<UserModel> getUsersList() {
         return getUsersModelList();
     }
-
-//    DataAccess dao = new DataAccess();
-//    List<UserModel> users = (List<UserModel>)dao.readFromStorage(DataAccess.StorageType.USERS);
-
 
     public Result login(String userName, String password) {
         Result result = new Result();

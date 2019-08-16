@@ -2,9 +2,11 @@ package user;
 
 
 import classes.Result;
+import models.dao.TestData;
 import models.users.UserModel;
 import models.users.UserType;
 import org.junit.Test;
+import services.BaseService;
 import services.UserService;
 
 import static org.junit.Assert.assertTrue;
@@ -23,6 +25,7 @@ public class TestLogin {
         UserService service = new UserService();
         service.editUser(new UserModel(0, "Saju", "Ahmad", "a", "123", UserType.ADMIN));
     }
+
 
     @Test
     public void testGetUserList() {

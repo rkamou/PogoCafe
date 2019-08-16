@@ -18,7 +18,7 @@ function getUserInfo() {
         if (ProceedResult(data)) {
             if (userId == 0) {
                 NotificationSuccess("User created successfully");
-                window.location.href = "/edit-user?id=" + data.id;
+                window.location.href = "/list-user";
             } else {
                 NotificationSuccess("User updated successfully");
             }
