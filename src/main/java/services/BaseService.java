@@ -4,6 +4,7 @@ import models.CounterIndexEntities;
 import models.dao.DataAccess;
 import models.menu.CategoryModel;
 import models.menu.ItemModel;
+import models.model.CheckoutModel;
 import models.users.UserModel;
 import models.users.UserType;
 
@@ -16,6 +17,19 @@ public class BaseService {
     private static List<CategoryModel> categoryModelList;
     private static List<ItemModel> itemModelList;
     private static List<UserModel> usersModelList;
+    private static List<CheckoutModel> checkoutList;
+
+
+    public static List<CheckoutModel> getCheckoutList() {
+        if (checkoutList == null) {
+            Object list = dao.readFromStorage(DataAccess.StorageType.CHECKOUTS);
+            if (list == null)
+                checkoutList = new ArrayList<CheckoutModel>();
+            else
+                checkoutList = (List<CheckoutModel>) list;
+        }
+        return checkoutList;
+    }
 
     public static List<CategoryModel> getCategoryModelList() {
         if (categoryModelList == null) {
@@ -50,6 +64,10 @@ public class BaseService {
         return usersModelList;
     }
 
+    public static void saveCheckoutChanges() {
+        dao.saveToStorage(DataAccess.StorageType.CHECKOUTS, checkoutList);
+    }
+
     public static void saveCategoryChanges() {
         dao.saveToStorage(DataAccess.StorageType.CATEGORIES, categoryModelList);
     }
@@ -60,6 +78,16 @@ public class BaseService {
 
     public static void saveUsersChanges() {
         dao.saveToStorage(DataAccess.StorageType.USERS, usersModelList);
+    }
+
+
+    public int getNextCheckOutId() {
+        CounterIndexEntities c = (CounterIndexEntities) dao.readFromStorage(DataAccess.StorageType.COUNTERS);
+        if (c == null) c = new CounterIndexEntities();
+        c.countCheckOuts++;
+        dao.saveToStorage(DataAccess.StorageType.COUNTERS, c);
+
+        return c.countCheckOuts;
     }
 
     public int getNextCategoryId() {

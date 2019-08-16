@@ -16,7 +16,7 @@ public class TestConsole {
     private static  String TAG_NAME = "TestConsole";
 
     public static void main(String[] args){
-        Date current = getCurrentDate();
+       /* Date current = getCurrentDate();
         Date shpd    = getShopDate();
 
         OrderModel orderm1 = new
@@ -52,7 +52,7 @@ public class TestConsole {
 
             }
 
-        }
+        }*/
 
             //Update Order
 

@@ -3,7 +3,6 @@ package services;
 import classes.Result;
 import models.cart.ShoppingCartModel;
 import models.menu.ItemModel;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,14 +66,6 @@ public class ShoppingCartService extends BaseService {
         }
         return new Result("Shopping cart is empty");
 
-    }
-
-    public boolean checkOut(){
-//        int orderId = getId();
-//        if(orderId == 0)
-//            return true;
-//
-        return false;
     }
 
 }

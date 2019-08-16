@@ -18,6 +18,8 @@
       </span>
             <div class="collapse navbar-collapse when-collapsed" id="ec-nav__collapsible">
                 <ul class="nav navbar-nav ec-nav__navbar ml-auto">
+
+
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>

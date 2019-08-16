@@ -1,6 +1,7 @@
 $(function () {
     reloadShoppingCart();
     $("#shopping-cart").on("click", ".delete-item-from-cart", deleteFromShoppingCart);
+    $("#send").on("click",checkout);
 });
 
 function reloadShoppingCart() {
@@ -70,4 +71,54 @@ function deleteFromShoppingCart(e) {
             reloadShoppingCart();
         }
     });
+}
+
+
+function checkout() {
+    let firstName   =$("#firstName").val();
+    let zip         =$("#zip").val();
+    let city_state  =$("#city_state").val();
+    let lastName    =$("#lastName").val();
+    let username    =$("#username").val();
+    let email       =$("#email").val();
+    let address     =$("#address").val();
+    let address2    =$("#address2").val();
+
+    console.log("Fi "+firstName);
+    console.log("Zip "+zip);
+    console.log("City State "+city_state);
+    console.log("LastName "+lastName);
+    console.log("Username "+username);
+
+    console.log("Email "+email);
+    console.log("Address "+address);
+    console.log("Address2 "+address2);
+
+    $.ajax("/checkout",{
+        "type":"POST",
+        "data":{
+            "firstName":firstName,
+            "zip":zip,
+            "city_state":city_state,
+            "lastName":lastName,
+            "username":username,
+            "email":email,
+            "address":address,
+            "address2":address2
+        }
+
+    }).done(saveProcess)
+      .fail(showError);
+}
+
+function showError(xhr,status,error) {
+    console.log(xhr,status,error);
+
+}
+
+function saveProcess(data) {
+    console.log("Success ");
+
+    console.log(JSON.parse(JSON.stringify(data)));
+    console.log("Data "+data.toString())
 }
