@@ -13,20 +13,22 @@ import java.util.List;
 
 
 public class DataAccess {
-    static String mainPath = "c:\\DataFiles";
+//    static String mainPath = "c:\\DataFiles";
+  //  static String mainPath = "c:\\DataFiles";//John Mac Computer
+
 
     public static enum StorageType {
-        USERS, MENUS, ITEMS, CATEGORIES, COUNTERS
+        USERS, MENUS, ITEMS, CATEGORIES, COUNTERS, CHECKOUTS
     }
 
     public void saveToStorage(StorageType type, Object ob) {
         ObjectOutputStream out = null;
         try {
-            // URL OUTPUT_DIR  =  this.getClass().getClassLoader().getResource("DataFiles");
-            //OUTPUT_DIR = uri.toURI()
-            // System.out.println(OUTPUT_DIR);
-            //URI uri = ClassLoader.getSystemResource("DataFiles").toURI();
-            // String mainPath = Paths.get(OUTPUT_DIR.toURI()).toString();
+             URL OUTPUT_DIR  =  this.getClass().getClassLoader().getResource("DataFiles");
+             //OUTPUT_DIR = uri.toURI();
+             System.out.println(OUTPUT_DIR);
+             URI uri = ClassLoader.getSystemResource("DataFiles").toURI();
+             String mainPath = Paths.get(OUTPUT_DIR.toURI()).toString();
 
             Path path = Paths.get(mainPath,type.toString());
 
@@ -47,11 +49,11 @@ public class DataAccess {
         ObjectInputStream in = null;
         Object retVal = null;
         try {
-            // URL OUTPUT_DIR  =  this.getClass().getClassLoader().getResource("DataFiles");
+             URL OUTPUT_DIR  =  this.getClass().getClassLoader().getResource("DataFiles");
             //OUTPUT_DIR = uri.toURI()
             // System.out.println(OUTPUT_DIR);
-            //URI uri = ClassLoader.getSystemResource("DataFiles").toURI();
-            // String mainPath = Paths.get(OUTPUT_DIR.toURI()).toString();
+            URI uri = ClassLoader.getSystemResource("DataFiles").toURI();
+            String mainPath = Paths.get(OUTPUT_DIR.toURI()).toString();
             Path path = Paths.get(mainPath,type.toString());
 
             in = new ObjectInputStream(Files.newInputStream(path));

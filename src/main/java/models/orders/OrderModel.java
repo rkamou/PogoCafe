@@ -1,29 +1,24 @@
 package models.orders;
 import classes.Status;
+import models.menu.ItemModel;
+
+import java.awt.*;
 import java.util.Date;
+import java.util.List;
 
 public class OrderModel {
 
   private int id;
-
   private int user_order_id;
-
   private Status status;
-
   private String  shipTo;
-
   private Date ordered;
-
   private Date shippped_date;
-
   private String order_package;
 
 
 
-
-
-
-
+  private List<ItemModel> listitem;
 
 
   public OrderModel(int user_order_id, String shipTo, Status status, String order_package,Date ordered, Date shipped_date){

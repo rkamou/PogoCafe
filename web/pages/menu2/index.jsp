@@ -50,7 +50,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="d-md-flex bg-white rounded shadow-v1 p-4" id="categories-list-container">
-                        <ul class="nav nav-pills nav-isotop-filter align-items-center my-2 mr-auto" id="categories-list"></ul>
+                        <ul class="nav nav-pills nav-isotop-filter align-items-center my-2 mr-auto" id="categories-list">
+
+                        </ul>
                     </div>
                 </div>
             </div> <!-- END row-->
