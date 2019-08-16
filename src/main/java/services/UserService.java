@@ -2,16 +2,12 @@ package services;
 
 import classes.Result;
 import models.users.UserModel;
-import models.users.UserType;
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class UserService extends BaseService {
-    public static List<UserModel> usersList = new ArrayList<UserModel>();
-
     static {
-        usersList.add(new UserModel(1, "Saju", "Ahmad", "a", "123", UserType.ADMIN));
+        // usersList.add(new UserModel(1, "Saju", "Ahmad", "a", "123", UserType.ADMIN));
     }
 
     public Result editUser(UserModel model) {
@@ -21,38 +17,41 @@ public class UserService extends BaseService {
         if (!result.isSuccess()) return result;
 
         if (model.getId() == 0) {
-            model.setId(usersList.size() + 1);
-            usersList.add(model);
+            model.setId(getNextUserId());
+            getUsersModelList().add(model);
             result.setId(model.getId());
         } else {
-            for(int i=0; i < usersList.size(); i++){
-                if (usersList.get(i).getId() == model.getId()){
-                    usersList.get(i).setFirstName(model.getFirstName());
-                    usersList.get(i).setLastName(model.getLastName());
-                    usersList.get(i).setRole(model.getRole());
+            for (int i = 0; i < getUsersModelList().size(); i++) {
+                if (getUsersModelList().get(i).getId() == model.getId()) {
+                    getUsersModelList().get(i).setFirstName(model.getFirstName());
+                    getUsersModelList().get(i).setLastName(model.getLastName());
+                    getUsersModelList().get(i).setRole(model.getRole());
                 }
             }
         }
+        saveUsersChanges();
 
         return result;
     }
 
-    public Result deleteUser(int id){
-        for (int i = 0; i < usersList.size(); i++) {
-            if (usersList.get(i).getId() ==  id) {
-                usersList.remove(i);
+    public Result deleteUser(int id) {
+        for (int i = 0; i < getUsersModelList().size(); i++) {
+            if (getUsersModelList().get(i).getId() == id) {
+                getUsersModelList().remove(i);
                 return new Result();
             }
         }
+        saveUsersChanges();
+
         return new Result("User not found");
     }
 
     public UserModel getUser(int id) {
-        return usersList.stream().filter(x -> x.getId() == id).findFirst().orElse(new UserModel());
+        return getUsersModelList().stream().filter(x -> x.getId() == id).findFirst().orElse(new UserModel());
     }
 
     public List<UserModel> getUsersList() {
-        return usersList;
+        return getUsersModelList();
     }
 
 //    DataAccess dao = new DataAccess();
@@ -61,7 +60,7 @@ public class UserService extends BaseService {
 
     public Result login(String userName, String password) {
         Result result = new Result();
-        for (UserModel user : usersList) {
+        for (UserModel user : getUsersModelList()) {
             if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
                 result.setValue(user);
                 return result;

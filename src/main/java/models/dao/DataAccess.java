@@ -1,5 +1,6 @@
 package models.dao;
 
+import java.io.EOFException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URI;
@@ -12,20 +13,21 @@ import java.util.List;
 
 
 public class DataAccess {
-   public static enum StorageType {
+    static String mainPath = "c:\\DataFiles";
+
+    public static enum StorageType {
         USERS, MENUS, ITEMS, CATEGORIES, COUNTERS
     }
-
-
 
     public void saveToStorage(StorageType type, Object ob) {
         ObjectOutputStream out = null;
         try {
-            URL OUTPUT_DIR  =  this.getClass().getClassLoader().getResource("DataFiles");
+            // URL OUTPUT_DIR  =  this.getClass().getClassLoader().getResource("DataFiles");
             //OUTPUT_DIR = uri.toURI()
-            System.out.println(OUTPUT_DIR);
+            // System.out.println(OUTPUT_DIR);
             //URI uri = ClassLoader.getSystemResource("DataFiles").toURI();
-            String mainPath = Paths.get(OUTPUT_DIR.toURI()).toString();
+            // String mainPath = Paths.get(OUTPUT_DIR.toURI()).toString();
+
             Path path = Paths.get(mainPath,type.toString());
 
             out = new ObjectOutputStream(Files.newOutputStream(path));
@@ -45,15 +47,17 @@ public class DataAccess {
         ObjectInputStream in = null;
         Object retVal = null;
         try {
-            URL OUTPUT_DIR  =  this.getClass().getClassLoader().getResource("DataFiles");
+            // URL OUTPUT_DIR  =  this.getClass().getClassLoader().getResource("DataFiles");
             //OUTPUT_DIR = uri.toURI()
-            System.out.println(OUTPUT_DIR);
+            // System.out.println(OUTPUT_DIR);
             //URI uri = ClassLoader.getSystemResource("DataFiles").toURI();
-            String mainPath = Paths.get(OUTPUT_DIR.toURI()).toString();
+            // String mainPath = Paths.get(OUTPUT_DIR.toURI()).toString();
             Path path = Paths.get(mainPath,type.toString());
 
             in = new ObjectInputStream(Files.newInputStream(path));
             retVal = in.readObject();
+        } catch (EOFException eof){
+            return null;
         } catch(Exception e) {
             e.printStackTrace();
         } finally {

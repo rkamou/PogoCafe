@@ -13,10 +13,10 @@ public class ShopppingCart {
 
 
         ShoppingCartService service = new ShoppingCartService();
-        service.addToShoppingCart(0, MenuService.itemModelList.get(0));
-        service.addToShoppingCart(1, MenuService.itemModelList.get(1));
+        service.addToShoppingCart(0, MenuService.getItemModelList().get(0));
+        service.addToShoppingCart(1, MenuService.getItemModelList().get(1));
 
-        service.addToShoppingCart(0, MenuService.itemModelList.get(0));
+        service.addToShoppingCart(0, MenuService.getItemModelList().get(0));
 
 
         for (ShoppingCartModel s: service.shoppingCartList) {
