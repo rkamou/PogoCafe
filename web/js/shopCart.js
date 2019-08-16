@@ -1,7 +1,7 @@
 $(function () {
     reloadShoppingCart();
     $("#shopping-cart").on("click", ".delete-item-from-cart", deleteFromShoppingCart);
-    $("#send").on("click",checkout);
+    $("#send").on("click", checkout);
 });
 
 function reloadShoppingCart() {
@@ -9,6 +9,7 @@ function reloadShoppingCart() {
         .done(function (data) {
             $("#shopping-cart").html("");
             let itemsCount = 0;
+            let totalAmount = 0;
 
             if (data) {
                 for (const item of data.items) {
@@ -27,17 +28,20 @@ function reloadShoppingCart() {
 
                     $("#shopping-cart").append(li);
                     itemsCount++;
+                    totalAmount += item.price;
                 }
             }
 
             if (itemsCount === 0) {
                 shoppingCartEmpty();
             } else {
+                let liTotal = `<li class="px-2 py-4 text-center">Subtotal: <span class="text-primary font-weight-semiBold"> $${totalAmount}</span></li>`;
+                $("#shopping-cart").append(liTotal);
+
                 let li = $("<li>").addClass("dropdown-cart__item");
                 let div = $("<div>").addClass("media");
                 let divBody = $("<div>").addClass("media-body pl-3");
                 divBody.append($("<a>").addClass("btn btn-primary").attr("href", "/checkout").text("Checkout"));
-                divBody.append($("<a>").addClass("btn btn-primary").attr("href", "#").text("Total"));
                 div.append(divBody);
                 li.append(div);
 
@@ -77,34 +81,34 @@ function deleteFromShoppingCart(e) {
 
 
 function checkout() {
-    let firstName   =$("#firstName").val();
-    let zip         =$("#zip").val();
-    let city_state  =$("#city_state").val();
-    let lastName    =$("#lastName").val();
-    let username    =$("#username").val();
-    let email       =$("#email").val();
-    let address     =$("#address").val();
-    let address2    =$("#address2").val();
+    let firstName = $("#firstName").val();
+    let zip = $("#zip").val();
+    let city_state = $("#city_state").val();
+    let lastName = $("#lastName").val();
+    let username = $("#username").val();
+    let email = $("#email").val();
+    let address = $("#address").val();
+    let address2 = $("#address2").val();
 
-    $.ajax("/checkout",{
-        "type":"POST",
-        "data":{
-            "firstName":firstName,
-            "zip":zip,
-            "city_state":city_state,
-            "lastName":lastName,
-            "username":username,
-            "email":email,
-            "address":address,
-            "address2":address2
+    $.ajax("/checkout", {
+        "type": "POST",
+        "data": {
+            "firstName": firstName,
+            "zip": zip,
+            "city_state": city_state,
+            "lastName": lastName,
+            "username": username,
+            "email": email,
+            "address": address,
+            "address2": address2
         }
 
     }).done(saveProcess)
-      .fail(showError);
+        .fail(showError);
 }
 
-function showError(xhr,status,error) {
-    console.log(xhr,status,error);
+function showError(xhr, status, error) {
+    console.log(xhr, status, error);
 }
 
 function saveProcess(data) {
