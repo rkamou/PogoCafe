@@ -41,6 +41,9 @@ public class MenuService extends BaseService {
         if (model == null) return new Result("Model is null");
 
         Result result = new Result();
+        if (model.getName().isEmpty()) result.addError("Please specify Name");
+        if (!result.isSuccess()) return result;
+
         try {
             if (model.getId() == 0) {
                 // creating
@@ -112,6 +115,11 @@ public class MenuService extends BaseService {
         if (model == null) return new Result("Model is null");
 
         Result result = new Result();
+        if (model.getName().isEmpty()) result.addError("Please specify Name");
+        if (model.getPicture().isEmpty()) result.addError("Please specify Picture");
+        if (model.getPrice() == 0) result.addError("Please specify Price");
+        if (!result.isSuccess()) return result;
+
         try {
             if (model.getId() == 0) {
                 // creating

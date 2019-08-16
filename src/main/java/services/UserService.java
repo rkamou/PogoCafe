@@ -9,8 +9,10 @@ public class UserService extends BaseService {
 
     public Result editUser(UserModel model) {
         Result result = new Result();
-        // some check here
-
+        if (model.getFirstName().isEmpty()) result.addError("Please fill first name");
+        if (model.getLastName().isEmpty()) result.addError("Please fill last name");
+        if (model.getUserName().isEmpty()) result.addError("Please fill user name");
+        if (model.getPassword().isEmpty()) result.addError("Please fill password");
         if (!result.isSuccess()) return result;
 
         if (model.getId() == 0) {

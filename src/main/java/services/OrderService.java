@@ -25,6 +25,11 @@ public class OrderService extends BaseService {
         if (model == null) return new Result("Model is null");
 
         Result result = new Result();
+        if (model.getFirstName().isEmpty()) result.addError("Please fill first name");
+        if (model.getLastName().isEmpty()) result.addError("Please fill last name");
+        if (model.getAdresse1().isEmpty()) result.addError("Please fill Address 1");
+        if (!result.isSuccess()) return result;
+
         try {
             model.setId(getNextOrderId());
             model.setStatus(OrderStatus.ORDERED);

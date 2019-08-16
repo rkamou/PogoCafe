@@ -13,7 +13,7 @@ import java.util.List;
 
 
 public class DataAccess {
-    static String mainPath = "c:\\DataFiles";
+    static String mainPath = "c:\\DataFiles";   // change according the location of your database in you system
   //  static String mainPath = "c:\\DataFiles";//John Mac Computer
 
 
