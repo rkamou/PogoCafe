@@ -44,29 +44,29 @@
             </div>
         </div>
 
-
         <div class="row">
             <div class="col-11 mx-auto">
                 <div class="row align-items-center">
                     <div class="col-lg-4 mr-auto mt-5 wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
-                        <img class="w-100" src="/img/users/saju.jpeg" alt="">
+                        <img class="w-100" src="/img/users/Rustem.jpg" alt="">
                     </div>
                     <div class="col-lg-7 mt-5 wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
                         <h4 class="h3 mb-4">
-                            <span class="text-primary d-md-block">Saju Ahmad</span>
-                            From Bangladesh.
+                            <span class="text-primary d-md-block">Rustem Bayetov</span>
+                            From Kazakhstan
                         </h4>
                         <p>
-                            Innovative tech mind with 15 years of experience working as a computer programmer. Capable
-                            of working with a variety of technology and software solutions, and managing databases.
-                            Valuable team member who has experience diagnosing problems and developing solutions. .
-                            <br/>Loves Football, Cricket and Fishing.
+                            Master of Front-end but also back-end, with over 13 years of experience as a developer in IT
+                            industry.
+                            Specialized in C# environment <br>Married. Have son and 2 daughters. Love snowboarding and
+                            coding.
                         </p>
                         <%--                <a href="#" class="btn btn-outline-primary mt-3">Read More</a>--%>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-lg-11 mx-auto">
                 <div class="row align-items-center">
@@ -94,18 +94,18 @@
             <div class="col-11 mx-auto">
                 <div class="row align-items-center">
                     <div class="col-lg-4 mr-auto mt-5 wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
-                        <img class="w-100" src="/img/users/Rustem.jpg" alt="">
+                        <img class="w-100" src="/img/users/saju.jpeg" alt="">
                     </div>
                     <div class="col-lg-7 mt-5 wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
                         <h4 class="h3 mb-4">
-                            <span class="text-primary d-md-block">Rustem Bayetov</span>
-                            From Kazakhstan
+                            <span class="text-primary d-md-block">Saju Ahmad</span>
+                            From Bangladesh.
                         </h4>
                         <p>
-                            Master of Front-end but also back-end, with over 13 years of experience as a developer in IT
-                            industry.
-                            Specialized in C# environment <br>Married. Have son and 2 daughters. Love snowboarding and
-                            coding.
+                            Innovative tech mind with 15 years of experience working as a computer programmer. Capable
+                            of working with a variety of technology and software solutions, and managing databases.
+                            Valuable team member who has experience diagnosing problems and developing solutions. .
+                            <br/>Loves Football, Cricket and Fishing.
                         </p>
                         <%--                <a href="#" class="btn btn-outline-primary mt-3">Read More</a>--%>
                     </div>
