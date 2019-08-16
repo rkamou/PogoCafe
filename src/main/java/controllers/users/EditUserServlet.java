@@ -32,7 +32,7 @@ public class EditUserServlet extends PogoServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (!haveIAccess(UserType.ADMIN, request)) forward("/pages/home/noAccess.jsp", request, response);
+        if (!haveAccess(UserType.ADMIN, request)) forward("/pages/home/noAccess.jsp", request, response);
 
         int id = getParamInt("id", request);
 

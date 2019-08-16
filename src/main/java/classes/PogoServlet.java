@@ -83,18 +83,29 @@ public class PogoServlet extends HttpServlet {
         view.forward(request, response);
     }
 
-    public boolean haveIAccess(UserType userType, HttpServletRequest request){
+    public boolean haveAccess(UserType userType, HttpServletRequest request) {
         boolean loggedIn = false;
         HttpSession session = request.getSession();
         if (session.getAttribute("loginStatus") != null)
             loggedIn = session.getAttribute("loginStatus").equals("loggedin");
 
-        if (loggedIn){
-            if (session.getAttribute("userType") != null){
+        if (loggedIn) {
+            if (session.getAttribute("userType") != null) {
                 return userType.toString() == session.getAttribute("userType").toString();
             }
         }
+        return false;
+    }
 
+    public boolean isLoggedin(HttpServletRequest request) {
+        boolean loggedIn = false;
+        HttpSession session = request.getSession();
+        if (session.getAttribute("loginStatus") != null)
+            loggedIn = session.getAttribute("loginStatus").equals("loggedin");
+
+        if (loggedIn) {
+            return true;
+        }
         return false;
     }
 }

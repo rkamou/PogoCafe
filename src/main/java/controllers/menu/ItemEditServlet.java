@@ -2,7 +2,6 @@ package controllers.menu;
 
 import classes.PogoServlet;
 import classes.Result;
-import models.menu.CategoryModel;
 import models.menu.ItemModel;
 import services.MenuService;
 
@@ -14,7 +13,8 @@ import java.io.IOException;
 @WebServlet("/item-edit")
 public class ItemEditServlet extends PogoServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        ItemModel model = new ItemModel();
+        ItemModel model;
+        model = new ItemModel();
         model.setId(getParamInt("id", request));
         model.setName(getParamString("name", request));
         model.setIngredients(getParamString("ingredients", request));

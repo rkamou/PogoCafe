@@ -13,7 +13,8 @@
     <jsp:include page="/pages/shared/layoutTop.jsp" />
     <input type="hidden" id="menuName" value="<%= request.getParameter("menuType")%>">
     <script>
-        const canEdit = '<%= true %>' === 'true';
+        <%--const canEdit = '<%= true %>' === 'true';--%>
+        const canEdit = '${userType == 'ADMIN' ? 'true' : 'false'}' === 'true';
     </script>
 
     <!-- Breadcrumbs -->

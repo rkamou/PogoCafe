@@ -1,6 +1,7 @@
 package controllers.adminTasks;
 
 import classes.PogoServlet;
+import models.users.UserType;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

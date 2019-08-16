@@ -12,6 +12,7 @@ import java.io.IOException;
 @WebServlet("/item-delete")
 public class ItemDeleteServlet extends PogoServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
         int id = getParamInt("id", request);
 
         MenuService service = new MenuService();

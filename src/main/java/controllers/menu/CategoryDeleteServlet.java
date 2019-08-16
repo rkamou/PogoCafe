@@ -4,7 +4,6 @@ import classes.PogoServlet;
 import classes.Result;
 import services.MenuService;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
