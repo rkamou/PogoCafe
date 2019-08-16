@@ -9,6 +9,7 @@ import models.users.UserModel;
 import models.users.UserType;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class BaseService {
@@ -82,39 +83,19 @@ public class BaseService {
 
 
     public int getNextCheckOutId() {
-        CounterIndexEntities c = (CounterIndexEntities) dao.readFromStorage(DataAccess.StorageType.COUNTERS);
-        if (c == null) c = new CounterIndexEntities();
-        c.countCheckOuts++;
-        dao.saveToStorage(DataAccess.StorageType.COUNTERS, c);
-
-        return c.countCheckOuts;
+        return getCheckoutList().stream().map(x -> x.getId()).max(Integer::compare).get() + 1;
     }
 
     public int getNextCategoryId() {
-        CounterIndexEntities c = (CounterIndexEntities) dao.readFromStorage(DataAccess.StorageType.COUNTERS);
-        if (c == null) c = new CounterIndexEntities();
-        c.countCategories++;
-        dao.saveToStorage(DataAccess.StorageType.COUNTERS, c);
-
-        return c.countCategories;
+        return getCategoryModelList().stream().map(x->x.getId()).max(Integer::compare).get() + 1;
     }
 
     public int getNextItemId() {
-        CounterIndexEntities c = (CounterIndexEntities) dao.readFromStorage(DataAccess.StorageType.COUNTERS);
-        if (c == null) c = new CounterIndexEntities();
-        c.countItems++;
-        dao.saveToStorage(DataAccess.StorageType.COUNTERS, c);
-
-        return c.countItems;
+        return getItemModelList().stream().map(x -> x.getId()).max(Integer::compare).get() + 1;
     }
 
     public int getNextUserId() {
-        CounterIndexEntities c = (CounterIndexEntities) dao.readFromStorage(DataAccess.StorageType.COUNTERS);
-        if (c == null) c = new CounterIndexEntities();
-        c.countUsers++;
-        dao.saveToStorage(DataAccess.StorageType.COUNTERS, c);
-
-        return c.countUsers;
+        return getUsersModelList().stream().map(x -> x.getId()).max(Integer::compare).get() + 1;
     }
 
     public static void loadOriginalUser() {

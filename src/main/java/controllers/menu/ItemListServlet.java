@@ -15,8 +15,10 @@ import java.util.List;
 @WebServlet("/item-list")
 public class ItemListServlet extends PogoServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String menuName = getParamString("menuName", request);
+
         MenuService service = new MenuService();
-        List<ItemModel> result = service.getItemList();
+        List<ItemModel> result = service.getItemList(menuName);
 
         writeJson(result, response);
     }

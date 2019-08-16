@@ -27,7 +27,10 @@
                         <li class="breadcrumb-item">Menu</li>
                     </ol>
                     <h2 class="h1">
-                        Breakfast menu
+                        <%= "breakfast".equals(request.getParameter("menuType")) || request.getParameter("menuType") == null ? "Breakfast menu" : "" %>
+                        <%= "lunch".equals(request.getParameter("menuType")) ? "Lunch menu" : "" %>
+                        <%= "dinner".equals(request.getParameter("menuType")) ? "Dinner  menu" : "" %>
+                        <%= "kids".equals(request.getParameter("menuType")) ? "Kids menu" : "" %>
                     </h2>
                 </div>
 

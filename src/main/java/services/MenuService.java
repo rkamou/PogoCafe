@@ -94,9 +94,12 @@ public class MenuService extends BaseService {
     }
 
     // get ItemModel list
-    public List<ItemModel> getItemList() {
+    public List<ItemModel> getItemList(String menuName) {
         try {
-            Stream<ItemModel> dbSet = getItemModelList().stream();
+            List<CategoryModel> categories = getCategoryList(menuName);
+
+            // Selecting only items from given categories
+            Stream<ItemModel> dbSet = getItemModelList().stream().filter(x -> categories.stream().map(c -> c.getId()).anyMatch(c -> c == x.getIdCategory()));
             return dbSet.collect(Collectors.toList());
         } catch (Exception ex) {
             System.out.println("Error: MenuService.getItemList() " + ex);

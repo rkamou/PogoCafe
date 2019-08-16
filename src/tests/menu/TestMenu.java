@@ -58,36 +58,84 @@ public class TestMenu {
 
     @Test
     public void TestSelectCategory () {
-        MenuService service = new MenuService();
-        // CategoryModel model = service.getCategory(1);
-        //
-        // assertNotEquals(model, null);
-        // if (model != null) {
-        //     System.out.println(model.getId() + " " + model.getName());
-        // }
+        int id = 1;
 
+        MenuService service = new MenuService();
+        CategoryModel model = service.getCategory(id);
+
+        assertNotEquals(model, null);
+        if (model != null) {
+            System.out.println(model.getId() + " " + model.getName() + " " + model.getMenuName());
+        } else {
+            System.out.println("No category with id " + id);
+        }
+    }
+
+    @Test
+    public void TestSelectCategoryList () {
+        MenuService service = new MenuService();
+        // List<CategoryModel> models = service.getCategoryList("breakfast");
+        // List<CategoryModel> models = service.getCategoryList("lunch");
+        // List<CategoryModel> models = service.getCategoryList("dinner");
         List<CategoryModel> models = service.getCategoryList("kids");
         if (models != null) {
             for (CategoryModel m : models) {
-                System.out.println(m.getId() + " " + m.getName());
+                System.out.println(m.getId() + " " + m.getName() + " " + m.getMenuName());
             }
         }
     }
 
     @Test
     public void TestSelectItem() {
-        MenuService service = new MenuService();
-        // ItemModel model = service.getItem(2);
-        //
-        // assertNotEquals(model, null);
-        // if (model != null) {
-        //     System.out.println(model.getId() + " " + model.getName());
-        // }
+        int id = 2;
 
-        List<ItemModel> models = service.getItemList();
+        MenuService service = new MenuService();
+        ItemModel model = service.getItem(id);
+
+        if (model != null) {
+            System.out.println(model.getId() + " " + model.getName());
+        } else {
+            System.out.println("No data with id" + id);
+        }
+    }
+
+    @Test
+    public void TestSelectItemList() {
+        MenuService service = new MenuService();
+        List<ItemModel> models = service.getItemList("breakfast");
+        // List<ItemModel> models = service.getItemList("lunch");
         if (models != null) {
             for (ItemModel m : models) {
-                System.out.println(m.getId() + " " + m.getName());
+                CategoryModel cm = service.getCategory(m.getIdCategory());
+                System.out.println(m.getId() + " (" + cm.getMenuName() + ") " + m.getIdCategory() + "-" + cm.getName() + " - " + m.getName());
+            }
+        }
+    }
+
+    @Test
+    public void CopyMenuItem() {
+        int[] itemIds = new int[] {15,16,17,18,19};
+        int toCategoryId = 9;
+
+        MenuService service = new MenuService();
+
+        for (int i : itemIds) {
+            ItemModel model = service.getItem(i);
+
+            if (model != null) {
+                System.out.println(model.getId() + " " + model.getName() + " " + model.getIdCategory());
+
+                ItemModel newModel = new ItemModel();
+                newModel.setName(model.getName());
+                newModel.setPicture(model.getPicture());
+                newModel.setPrice(model.getPrice());
+                newModel.setIngredients(model.getIngredients());
+                newModel.setIdCategory(toCategoryId);
+
+                service.itemEdit(newModel);
+                System.out.println("Copied to category " + toCategoryId);
+            } else {
+                System.out.println("No data with id" + i);
             }
         }
     }

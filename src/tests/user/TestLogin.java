@@ -34,4 +34,10 @@ public class TestLogin {
             System.out.println(user.toString());
         }
     }
+
+    @Test
+    public void reloadAllDataFromDb() {
+        BaseService.getUsersModelList();
+    }
+
 }

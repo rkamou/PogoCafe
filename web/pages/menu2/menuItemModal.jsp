@@ -27,10 +27,6 @@
                         <label for="menuItem-picture" class="col-form-label">Picture (paste image absolute url from Internet)</label>
                         <input type="text" class="form-control" id="menuItem-picture">
                     </div>
-                    <div>
-                        <img src="" alt="" width="100%" height="200" id="menuItem-picture-view">
-                    </div>
-
                     <div class="form-group">
                         <label for="menuItem-idCategory" class="col-form-label">Choose category</label>
                         <select data-placeholder="Choose category" class="chosen-select ec-select my_select_box" tabindex="5" id="menuItem-idCategory"></select>

@@ -10,6 +10,7 @@ $(function () {
 
     $("#categories-list").on("click", "a.nav-link", categorySelect);
     $("#menu-items-container").on("click", "button.add-new-meal", addNewMeal);
+    $("#menu-items-container").on("click", "a.edit-menu-item", editMeal);
     $("#menu-items-container").on("click", "button.add-to-cart", addToCart);
 });
 
@@ -51,7 +52,7 @@ function reloadAllCategories() {
 
 // reloading all menu items
 function reloadAllMenuItems() {
-    $.post("/item-list")
+    $.post("/item-list", {menuName: $("#menuName").val()})
         .done(function (data) {
             $("#menu-items-container").html("");
             $("#menu-items-container").isotope({layoutMode: 'fitRows'});
@@ -60,7 +61,7 @@ function reloadAllMenuItems() {
                 for (const item of data) {
                     let div = $("<div>").addClass("isotope-item").addClass("col-md-6").addClass("col-lg-4").addClass("marginTop-30")
                         .addClass("category" + item.idCategory);
-                    if (lastSelectedCategory > 0 && lastSelectedCategory != item.idCategory){
+                    if (lastSelectedCategory > 0 && lastSelectedCategory != item.idCategory) {
                         div.css("display", "none");
                     }
 
@@ -72,6 +73,7 @@ function reloadAllMenuItems() {
                     // show/hide category id
                     // divBody.append($("<p>").addClass("text-gray").text(item.idCategory));
                     divBody.append($("<p>").text(item.ingredients));
+                    divBody.append($("<a>").attr("href", "#").addClass("edit-menu-item").attr("item-id", item.id).text("edit"));
                     innerDiv.append(divBody);
                     let divFooter = $("<div>").addClass("d-flex justify-content-between align-items-center border-top position-relative p-4");
                     divFooter.append($("<span>").addClass("d-inline-block bg-primary text-white px-4 py-1 rounded-pill").text("$" + item.price));
@@ -126,6 +128,19 @@ function addNewMeal() {
     });
 }
 
+function editMeal(e) {
+    e.preventDefault();
+
+    $.post("/item-get", {
+        id: this.getAttribute("item-id")
+    })
+        .done(function (data) {
+            if (data) {
+                openMenuItemModal(data);
+            }
+        });
+}
+
 // new category clicked
 function newCategoryClick() {
     openCategoryModal({
@@ -144,7 +159,6 @@ function editCategoryClick() {
         id: lastSelectedCategory
     })
         .done(function (data) {
-            console.log(data);
             if (data) {
                 openCategoryModal(data);
             }
@@ -165,8 +179,8 @@ function categorySelect(e) {
 
 function addToCart(e) {
     $.ajax("/add-to-cart", {
-        "type":"POST",
-        "data":{
+        "type": "POST",
+        "data": {
             "itemId": this.getAttribute("item-id")
         }
 
