@@ -55,7 +55,7 @@
                         </c:if>
                          <c:if test="${userType == 'DELIVER'}">
                              <li class="nav-item">
-                                 <a class="nav-link" href="#">Delivery List</a>
+                                 <a class="nav-link" href="orders-list">Order List</a>
                              </li>
                          </c:if>
                         <li class="nav-item">
