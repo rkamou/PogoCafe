@@ -1,97 +1,130 @@
 package models.orders;
-import classes.Status;
+
+import classes.OrderStatus;
+import models.cart.ShoppingCartModel;
 import models.menu.ItemModel;
 
-import java.awt.*;
-import java.util.Date;
+import java.io.Serializable;
 import java.util.List;
 
-public class OrderModel {
+public class OrderModel implements Serializable {
 
-  private int id;
-  private int user_order_id;
-  private Status status;
-  private String  shipTo;
-  private Date ordered;
-  private Date shippped_date;
-  private String order_package;
+    private int id;
+    private String firstName;
+    private String lastName;
+    private String username;
+    private String email;
+    private String adresse1;
+    private String adresse2;
+    private String zip;
+    private String city;
+    private String state;
+    private OrderStatus status;
+    private List<ItemModel> listItem;
+    private double totalAmount;
 
+    public double getTotalAmount() {
+        return totalAmount;
+    }
 
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
 
-  private List<ItemModel> listitem;
+    public OrderStatus getStatus() {
+        return status;
+    }
 
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+    }
 
-  public OrderModel(int user_order_id, String shipTo, Status status, String order_package,Date ordered, Date shipped_date){
-    this.user_order_id = user_order_id;
-    this.shipTo        = shipTo;
-    this.status        = status;
-    this.ordered       = ordered;
-    this.shippped_date = shipped_date;
-    this.order_package = order_package;
-  }
+    public String getCity() {
+        return city;
+    }
 
-  public OrderModel(){
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-  }
+    public String getState() {
+        return state;
+    }
 
+    public void setState(String state) {
+        this.state = state;
+    }
 
-  public void setStatus(Status status) {
-    this.status = status;
-  }
+    public String getZip() {
+        return zip;
+    }
 
-  public Status getStatus() {
-    return status;
-  }
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
 
-  public int getUser_order_id() {
-    return user_order_id;
-  }
+    public int getId() {
+        return id;
+    }
 
-  public void setUser_order_id(int user_order_id) {
-    this.user_order_id = user_order_id;
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  public String getShipTo() {
-    return shipTo;
-  }
+    public String getFirstName() {
+        return firstName;
+    }
 
-  public void setShipTo(String shipTo) {
-    this.shipTo = shipTo;
-  }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-  public Date getOrdered() {
-    return ordered;
-  }
+    public String getLastName() {
+        return lastName;
+    }
 
-  public void setOrdered(Date ordered) {
-    this.ordered = ordered;
-  }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-  public Date getShippped_date() {
-    return shippped_date;
-  }
+    public String getUsername() {
+        return username;
+    }
 
-  public void setShippped_date(Date shippped_date) {
-    this.shippped_date = shippped_date;
-  }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-  public String getOrder_package() {
-    return order_package;
-  }
+    public String getEmail() {
+        return email;
+    }
 
-  public void setOrder_package(String order_package) {
-    this.order_package = order_package;
-  }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-  public int getId() {
-    return id;
-  }
+    public String getAdresse1() {
+        return adresse1;
+    }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    public void setAdresse1(String adresse1) {
+        this.adresse1 = adresse1;
+    }
 
-  public String String(){
-      return ""+this.order_package;
-  }
+    public String getAdresse2() {
+        return adresse2;
+    }
+
+    public void setAdresse2(String adresse2) {
+        this.adresse2 = adresse2;
+    }
+
+    public List<ItemModel> getListItem() {
+        return listItem;
+    }
+
+    public void setListItem(List<ItemModel> listItem) {
+        this.listItem = listItem;
+    }
+
 }

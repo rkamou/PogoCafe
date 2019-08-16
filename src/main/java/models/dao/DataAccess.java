@@ -18,7 +18,7 @@ public class DataAccess {
 
 
     public static enum StorageType {
-        USERS, MENUS, ITEMS, CATEGORIES, COUNTERS, CHECKOUTS
+        USERS, MENUS, ITEMS, CATEGORIES, COUNTERS, ORDERS
     }
 
     public void saveToStorage(StorageType type, Object ob) {

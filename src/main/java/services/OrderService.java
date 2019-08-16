@@ -1,64 +1,55 @@
 package services;
 
+import classes.Np;
+import classes.OrderStatus;
 import classes.Result;
+import models.menu.CategoryModel;
 import models.orders.OrderModel;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OrderService extends BaseService {
-
-    public static List<OrderModel> orderModelList = new ArrayList<OrderModel>();
-
-
-
-    public Result  orderCreateorEdit( OrderModel model){
-        Result result = new Result();
-        if (model == null) return  new Result("Model is null");
+    public OrderModel getOrder(int id) {
         try {
-            if (model.getId() == 0) {
-                // creating
-                // dbOrders().create(model);
-                result.setId(model.getId());
-            } else {
-                // editing
-                // if (!dbOrders().idExists(model.getId())) return new Result("Cannot find order with id: " + model.getId());
-                //  dbOrders().update(model);
+            return getOrderList().stream().filter(x -> x.getId() == id).findFirst().get();
+        } catch (Exception ex) {
+            System.out.println("Error: OrderService.getOrder() " + ex);
+            return null;
+        }
+    }
 
-            }
-        } catch (Exception ex){
+    public Result addOrder(OrderModel model) {
+        if (model == null) return new Result("Model is null");
+
+        Result result = new Result();
+        try {
+            model.setId(getNextOrderId());
+            model.setStatus(OrderStatus.ORDERED);
+            model.setTotalAmount(model.getListItem().stream().map(x->x.getPrice()).reduce((aDouble, aDouble2) -> aDouble+aDouble2).orElse(0.0));
+            getOrderList().add(model);
+            result.setId(model.getId());
+            saveOrdersChanges();
+        } catch (Exception ex) {
             result.addError(ex);
         }
 
-        return  result;
+        return result;
     }
 
-
-    // Delete Order by Id
-    public Result orderDelete(int id){
+    public Result changeOrderStatus(int id, OrderStatus status) {
         Result result = new Result();
-        // deleting
+
         try {
-            // if (!dbOrders().idExists(id)) return new Result("Cannot find order with id: " + id);
-            // dbOrders().deleteById(id);
-        }
-        catch (Exception ex){
+            if (!getOrderList().stream().anyMatch(x -> x.getId() == id)) return new Result("Cannot find order with id: " + id);
+            OrderModel entity = getOrderList().stream().filter(x -> x.getId() == id).findFirst().get();
+            entity.setStatus(status);
+            saveOrdersChanges();
+        } catch (Exception ex) {
             result.addError(ex);
         }
         return result;
     }
-
-    //Get Order
-    public   List<OrderModel> getOrderList(){
-        List<OrderModel> list = null;
-
-        // try {
-        //     // list =  dbOrders().queryForAll();
-        // } catch (SQLException e) {
-        //     e.printStackTrace();
-        // }
-        return list;
-    }
-
 }

@@ -1,15 +1,13 @@
 package services;
 
-import models.CounterIndexEntities;
 import models.dao.DataAccess;
 import models.menu.CategoryModel;
 import models.menu.ItemModel;
-import models.model.CheckoutModel;
+import models.orders.OrderModel;
 import models.users.UserModel;
 import models.users.UserType;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class BaseService {
@@ -18,18 +16,18 @@ public class BaseService {
     private static List<CategoryModel> categoryModelList;
     private static List<ItemModel> itemModelList;
     private static List<UserModel> usersModelList;
-    private static List<CheckoutModel> checkoutList;
+    private static List<OrderModel> orderModelList;
 
 
-    public static List<CheckoutModel> getCheckoutList() {
-        if (checkoutList == null) {
-            Object list = dao.readFromStorage(DataAccess.StorageType.CHECKOUTS);
+    public static List<OrderModel> getOrderList() {
+        if (orderModelList == null) {
+            Object list = dao.readFromStorage(DataAccess.StorageType.ORDERS);
             if (list == null)
-                checkoutList = new ArrayList<CheckoutModel>();
+                orderModelList = new ArrayList<OrderModel>();
             else
-                checkoutList = (List<CheckoutModel>) list;
+                orderModelList = (List<OrderModel>) list;
         }
-        return checkoutList;
+        return orderModelList;
     }
 
     public static List<CategoryModel> getCategoryModelList() {
@@ -65,8 +63,8 @@ public class BaseService {
         return usersModelList;
     }
 
-    public static void saveCheckoutChanges() {
-        dao.saveToStorage(DataAccess.StorageType.CHECKOUTS, checkoutList);
+    public static void saveOrdersChanges() {
+        dao.saveToStorage(DataAccess.StorageType.ORDERS, orderModelList);
     }
 
     public static void saveCategoryChanges() {
@@ -82,20 +80,20 @@ public class BaseService {
     }
 
 
-    public int getNextCheckOutId() {
-        return getCheckoutList().stream().map(x -> x.getId()).max(Integer::compare).get() + 1;
+    public int getNextOrderId() {
+        return getOrderList().stream().map(x -> x.getId()).max(Integer::compare).orElse(0) + 1;
     }
 
     public int getNextCategoryId() {
-        return getCategoryModelList().stream().map(x->x.getId()).max(Integer::compare).get() + 1;
+        return getCategoryModelList().stream().map(x->x.getId()).max(Integer::compare).orElse(0) + 1;
     }
 
     public int getNextItemId() {
-        return getItemModelList().stream().map(x -> x.getId()).max(Integer::compare).get() + 1;
+        return getItemModelList().stream().map(x -> x.getId()).max(Integer::compare).orElse(0) + 1;
     }
 
     public int getNextUserId() {
-        return getUsersModelList().stream().map(x -> x.getId()).max(Integer::compare).get() + 1;
+        return getUsersModelList().stream().map(x -> x.getId()).max(Integer::compare).orElse(0) + 1;
     }
 
     public static void loadOriginalUser() {

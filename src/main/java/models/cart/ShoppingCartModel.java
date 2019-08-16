@@ -7,9 +7,10 @@ public class ShoppingCartModel {
     private int id;
     private List<ItemModel> items;
 
-    private double totalAmount;
+    private double totalAmount = 0.0;
 
     public double getTotalAmount() {
+        totalAmount = items.stream().map(e->e.getPrice()).reduce((a,b)-> a+b).orElse(0.0);
         return totalAmount;
     }
 

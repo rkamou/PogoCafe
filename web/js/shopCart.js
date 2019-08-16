@@ -37,8 +37,10 @@ function reloadShoppingCart() {
                 let div = $("<div>").addClass("media");
                 let divBody = $("<div>").addClass("media-body pl-3");
                 divBody.append($("<a>").addClass("btn btn-primary").attr("href", "/checkout").text("Checkout"));
+                divBody.append($("<a>").addClass("btn btn-primary").attr("href", "#").text("Total"));
                 div.append(divBody);
                 li.append(div);
+
                 $("#shopping-cart").append(li);
             }
         });
@@ -84,16 +86,6 @@ function checkout() {
     let address     =$("#address").val();
     let address2    =$("#address2").val();
 
-    console.log("Fi "+firstName);
-    console.log("Zip "+zip);
-    console.log("City State "+city_state);
-    console.log("LastName "+lastName);
-    console.log("Username "+username);
-
-    console.log("Email "+email);
-    console.log("Address "+address);
-    console.log("Address2 "+address2);
-
     $.ajax("/checkout",{
         "type":"POST",
         "data":{
@@ -113,12 +105,15 @@ function checkout() {
 
 function showError(xhr,status,error) {
     console.log(xhr,status,error);
-
 }
 
 function saveProcess(data) {
-    console.log("Success ");
+    if (ProceedResult(data)) {
+        window.location.href = "/thank-you";
+    }
 
-    console.log(JSON.parse(JSON.stringify(data)));
-    console.log("Data "+data.toString())
+    // console.log("Success ");
+    //
+    // console.log(JSON.parse(JSON.stringify(data)));
+    // console.log("Data "+data.toString())
 }

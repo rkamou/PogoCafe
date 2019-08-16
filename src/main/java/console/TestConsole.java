@@ -1,13 +1,8 @@
 package console;
 
-import classes.Result;
-import classes.Status;
-import models.orders.OrderModel;
-import services.OrderService;
 import java.util.Calendar;
 import java.util.Date;
 import java.sql.Timestamp;
-import java.util.List;
 
 
 public class TestConsole {
