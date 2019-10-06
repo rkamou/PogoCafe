@@ -14,4 +14,4 @@ src/main/java/models/dao or the just in the package models.dao of the project.
 
 Find the detailed presentation of the project in a powerpoint file at the root of the project.
 
-
+***************************************************************************************************************
